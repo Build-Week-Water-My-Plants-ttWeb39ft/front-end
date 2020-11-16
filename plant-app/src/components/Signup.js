@@ -12,7 +12,25 @@ function Signup() {
     terms: false,
   });
   const [disabled, setDisabled] = useState(true);
+  const [errors, setErrors] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    terms: false,
+  });
+
   //
+  const setFormErrors = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => setErrors({ ...errors, [name]: "" }))
+      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }));
+  };
+
   const schema = yup.object().shape({
     username: yup
       .string()
@@ -39,6 +57,7 @@ function Signup() {
   const change = (event) => {
     const { checked, value, name, type } = event.target;
     const valueToUse = type === "checkbox" ? checked : value;
+    setFormErrors(name, valueToUse);
     setForm({ ...form, [name]: valueToUse });
   };
   return (
@@ -47,7 +66,13 @@ function Signup() {
       <p>What is needed, - name, email, terms, password, 2nd pass, terms</p>
       <form>
         <label>
-          Username <input onChange={change} name="username" type="text" />
+          Username{" "}
+          <input
+            onChange={change}
+            name="username"
+            type="text"
+            placeholder="Your Username"
+          />
         </label>
         <br></br>
         <label>

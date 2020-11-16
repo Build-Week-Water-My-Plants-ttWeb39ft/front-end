@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import * as yup from "yup";
 
 function Signup() {
@@ -60,11 +61,42 @@ function Signup() {
     setFormErrors(name, valueToUse);
     setForm({ ...form, [name]: valueToUse });
   };
+
+  const submit = (e) => {
+    e.preventDefault();
+    const newUser = {
+      username: form.username.trim(),
+      firstName: form.firstName.trim(),
+      lastName: form.lastName.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      password: form.password.trim(),
+      terms: form.terms,
+    };
+    axios
+      .post("https://reqres.in/api/users", newUser)
+      .then((res) => {
+        setForm({
+          //Doesn't clear form but it needs to
+          username: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          password: "",
+          terms: false,
+        });
+      })
+      .catch((err) => {
+        debugger;
+      });
+  };
+
   return (
     <>
       <h1>Sign up!</h1>
 
-      <form>
+      <form onSubmit={submit}>
         <label>
           Username{" "}
           <input

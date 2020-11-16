@@ -12,7 +12,25 @@ function Signup() {
     terms: false,
   });
   const [disabled, setDisabled] = useState(true);
+  const [errors, setErrors] = useState({
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    terms: false,
+  });
+
   //
+  const setFormErrors = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => setErrors({ ...errors, [name]: "" }))
+      .catch((err) => setErrors({ ...errors, [name]: err.errors[0] }));
+  };
+
   const schema = yup.object().shape({
     username: yup
       .string()
@@ -27,7 +45,7 @@ function Signup() {
       .min(7, "Phone Number is required"),
     password: yup
       .string()
-      .required("Password is requred")
+      .required("Password is required")
       .min(6, "Password is required"),
     terms: yup.boolean().oneOf([true], "You must give away your data"),
   });
@@ -39,15 +57,23 @@ function Signup() {
   const change = (event) => {
     const { checked, value, name, type } = event.target;
     const valueToUse = type === "checkbox" ? checked : value;
+    setFormErrors(name, valueToUse);
     setForm({ ...form, [name]: valueToUse });
   };
   return (
     <>
       <h1>Sign up!</h1>
-      <p>What is needed, - name, email, terms, password, 2nd pass, terms</p>
+
       <form>
         <label>
-          Username <input onChange={change} name="username" type="text" />
+          Username{" "}
+          <input
+            onChange={change}
+            name="username"
+            type="text"
+            placeholder="Your Username"
+          />
+          <div style={{ color: "red" }}>{errors.username}</div>
         </label>
         <br></br>
         <label>
@@ -59,6 +85,7 @@ function Signup() {
             placeholder="Your First Name"
           />
         </label>
+        <div style={{ color: "red" }}>{errors.firstName}</div>
         <br></br>
         <label>
           Your Last Name{" "}
@@ -69,6 +96,7 @@ function Signup() {
             placeholder="Your Last Name"
           />
         </label>
+        <div style={{ color: "red" }}>{errors.lastName}</div>
         <br></br>
         <label>
           Your Email{" "}
@@ -79,6 +107,7 @@ function Signup() {
             placeholder="Your Email"
           />
         </label>
+        <div style={{ color: "red" }}>{errors.email}</div>
         <br></br>
         <label>
           Your Phone Number{" "}
@@ -89,6 +118,7 @@ function Signup() {
             placeholder="Your Phone number"
           />
         </label>
+        <div style={{ color: "red" }}>{errors.phone}</div>
         <br></br>
         <label>
           Password{" "}
@@ -99,12 +129,15 @@ function Signup() {
             placeholder="Password"
           />
         </label>
+
+        <div style={{ color: "red" }}>{errors.password}</div>
         <br></br>
 
         <label>
           Terms and Conditions
           <input onChange={change} name="terms" type="checkbox" />
         </label>
+        <div style={{ color: "red" }}>{errors.terms}</div>
         <br></br>
         <button disabled={disabled} type="submit">
           Submit

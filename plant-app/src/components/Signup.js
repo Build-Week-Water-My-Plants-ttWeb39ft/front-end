@@ -45,7 +45,7 @@ function Signup() {
       .min(7, "Phone Number is required"),
     password: yup
       .string()
-      .required("Password is requred")
+      .required("Password is required")
       .min(6, "Password is required"),
     terms: yup.boolean().oneOf([true], "You must give away your data"),
   });
@@ -63,7 +63,7 @@ function Signup() {
   return (
     <>
       <h1>Sign up!</h1>
-      <p>What is needed, - name, email, terms, password, 2nd pass, terms</p>
+
       <form>
         <label>
           Username{" "}
@@ -73,6 +73,7 @@ function Signup() {
             type="text"
             placeholder="Your Username"
           />
+          <div style={{ color: "red" }}>{errors.username}</div>
         </label>
         <br></br>
         <label>
@@ -84,6 +85,7 @@ function Signup() {
             placeholder="Your First Name"
           />
         </label>
+        <div style={{ color: "red" }}>{errors.firstName}</div>
         <br></br>
         <label>
           Your Last Name{" "}
@@ -94,6 +96,7 @@ function Signup() {
             placeholder="Your Last Name"
           />
         </label>
+        <div style={{ color: "red" }}>{errors.lastName}</div>
         <br></br>
         <label>
           Your Email{" "}
@@ -104,6 +107,7 @@ function Signup() {
             placeholder="Your Email"
           />
         </label>
+        <div style={{ color: "red" }}>{errors.email}</div>
         <br></br>
         <label>
           Your Phone Number{" "}
@@ -114,6 +118,7 @@ function Signup() {
             placeholder="Your Phone number"
           />
         </label>
+        <div style={{ color: "red" }}>{errors.phone}</div>
         <br></br>
         <label>
           Password{" "}
@@ -124,12 +129,15 @@ function Signup() {
             placeholder="Password"
           />
         </label>
+
+        <div style={{ color: "red" }}>{errors.password}</div>
         <br></br>
 
         <label>
           Terms and Conditions
           <input onChange={change} name="terms" type="checkbox" />
         </label>
+        <div style={{ color: "red" }}>{errors.terms}</div>
         <br></br>
         <button disabled={disabled} type="submit">
           Submit

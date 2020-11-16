@@ -12,7 +12,7 @@ function Signup() {
     terms: false,
   });
   const [disabled, setDisabled] = useState(true);
-
+  //
   const schema = yup.object().shape({
     username: yup
       .string()

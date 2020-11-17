@@ -3,7 +3,6 @@ import axios from "axios";
 import * as yup from "yup";
 
 const initialLoginFormValues = {
-    // text inputs
     username: "",
     password: ""
 };
@@ -23,11 +22,19 @@ function Login() {
     const [ loginFormErrors, setLoginFormErrors ] = useState(initialLoginFormErrors);
     const [ disabledLoginBtn, setDisabledLoginBtn ] = useState(initialDisabledBtn);
 
-    
+
 
     return (
         <>
-            <h1>Welcome Back!</h1>            
+            <header>
+                <nav>
+                    <a href="">Home</a>
+                    <a href="">About</a>
+                    <a href="">Reviews</a>
+                    <a href="">Contact</a>
+                </nav>
+            </header>
+            <h1>Welcome Back! <br/>Your Plants Miss you</h1>            
             <div>
                 <h3>Login</h3>
                 <input 
@@ -37,6 +44,7 @@ function Login() {
                     type="text"
                     placeholder="Your Username"
                 />
+                <br/>
                 <input
                     // onChange={onChange}
                     name="password"
@@ -46,7 +54,16 @@ function Login() {
                 />
             </div>
             <button>Login</button>
+            <br/>
             <a href="">New User? Sign Up Here!</a>
+            <footer>
+                <nav>
+                    <a href="">Home</a>
+                    <a href="">About</a>
+                    <a href="">Reviews</a>
+                    <a href="">Contact</a>
+                </nav>
+            </footer>
         </>
     )
 }

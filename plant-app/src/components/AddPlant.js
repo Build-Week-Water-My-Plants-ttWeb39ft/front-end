@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function NewPlantForm(Props) {
 
@@ -36,7 +36,6 @@ export default function NewPlantForm(Props) {
   }
 
   const dayConditional = () => {
-    const { monday, tuesday, wednesday, thursday, friday, saturday, sunday } = formValues
     if (formValues.frequency === 'monthly' || formValues.frequency === 'biweekly'|| formValues.frequency === 'weekly'){
       return (
         <div>
@@ -101,7 +100,16 @@ export default function NewPlantForm(Props) {
       )
     } 
     // else {setFormValues({...formValues, [monday]: false, [tuesday]: false, [wednesday]: false, [thursday]: false, [friday]: false, [saturday]: false, [sunday]: false})}
+    // else {setFormValues({...formValues, [arr]: false})}
   }
+
+  // useEffect(()=> {
+  //   if (formValues.frequency === 'monthly' || formValues.frequency === 'biweekly'|| formValues.frequency === 'weekly'){
+  //     return dayConditional()
+  //   } else {
+      
+  //   }
+  // },[formValues.frequency])
 
   return(
     <form>
@@ -200,65 +208,7 @@ export default function NewPlantForm(Props) {
             onChange={onChange} 
           />
         </label>
-        {/* {(formValues.frequency !== '' || formValues.frequency !== 'daily') ? <h1>test</h1> : ''} */}
         {dayConditional()}
-        {/* <h5>What days of the week am I watered?</h5>
-        <label>
-          Monday
-          <input
-            name='monday'
-            type='checkbox'
-            onChange={onChange} 
-            />
-        </label>
-        <label>
-          Tuesday
-          <input
-            name='tuesday'
-            type='checkbox'
-            onChange={onChange} 
-            />
-        </label>
-        <label>
-          Wednesday
-          <input
-            name='wednesday'
-            type='checkbox'
-            onChange={onChange} 
-            />
-        </label>
-        <label>
-          Thursday
-          <input
-            name='thursday'
-            type='checkbox'
-            onChange={onChange} 
-          />
-        </label>
-        <label>
-          Friday
-          <input
-            name='friday'
-            type='checkbox'
-            onChange={onChange} 
-          />
-        </label>
-        <label>
-          Saturday
-          <input
-            name='saturday'
-            type='checkbox'
-            onChange={onChange} 
-          />
-        </label>
-        <label>
-          Sunday
-          <input
-            name='sunday'
-            type='checkbox'
-            onChange={onChange} 
-          />
-        </label> */}
       </div>
       <label>
         <h3>Additional Care Instructions</h3>

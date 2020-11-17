@@ -5,13 +5,18 @@ export default function NewPlantForm(Props) {
 //Add plant form- Plant post-- Name of plant, h2oFrequency, species, plant image, date planted 
 // When to water- string- time of day, or how many times per week. enter a number 1-5. When do you water me? checkboxes m-s. input 1 per day,  Drop down, once per week, every other week, and radio buttons with cases. Form valid-- Jay
 
+//Monthly, bi-weekly, weeekly, daily
+//what days in  a string
+
+
   const initialFormValues = {
-    plantName: '',
-    plantImage:'',
-    plantSpecies:'',
-    plantDescription:'',
+    nickname: '',
+    image:'',
+    species:'',
+    description:'',
     datePlanted:'',
-    wateringSchedule:'',
+    frequency:'',
+    days:'',
     careInstructions:'',
   }
 
@@ -30,9 +35,9 @@ export default function NewPlantForm(Props) {
       <label>
         <h3>Plant Name</h3>
         <input
-          name='plantName'
+          name='nickname'
           type='text'
-          value={formValues.plantName}
+          value={formValues.nickname}
           onChange={onChange}
         />
       </label>
@@ -40,19 +45,20 @@ export default function NewPlantForm(Props) {
       <label>
         <h3>Plant Image</h3>
         <input
-          name='plantImage'
+          name='image'
           type='file'
-          // value={formValues.plantSpecies}
-          // onChange={onChange} 
+          value={formValues.image}
+          accept='image/png, image/jpeg, image/gif'
+          onChange={onChange} 
         />
       </label>
       <br/>
       <label>
         <h3>Plant Species</h3>
         <input
-          name='plantSpecies'
+          name='species'
           type='text'
-          value={formValues.plantSpecies}
+          value={formValues.species}
           onChange={onChange} 
         />
       </label>
@@ -60,9 +66,9 @@ export default function NewPlantForm(Props) {
       <label>
         <h3>Plant Description</h3>
         <input
-          name='plantDescription'
+          name='description'
           type='text'
-          value={formValues.plantDescription}
+          value={formValues.description}
           onChange={onChange} 
         />
       </label>
@@ -75,6 +81,56 @@ export default function NewPlantForm(Props) {
           onChange={onChange} 
         />
       </label>
+      <div class='wateringSchedule'>
+        <h3>Watering Schedule</h3>
+        <h4>Am I watered Daily, Weekly, Biweekly, or Monthly?</h4>
+        <label>
+          Daily
+          <input
+            name='frequency'
+            type='radio'
+            value='daily'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Weekly
+          <input
+            name='frequency'
+            type='radio'
+            value='weekly'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Biweekly
+          <input
+            name='frequency'
+            type='radio'
+            value='biweekly'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Monthly
+          <input
+            name='frequency'
+            type='radio'
+            value='monthly'
+            onChange={onChange} 
+          />
+        </label>
+      </div>
+      <label>
+        <h3>Additional Care Instructions</h3>
+        <input
+          name='careInstructions'
+          type='text'
+          value={formValues.careInstructions}
+          onChange={onChange} 
+        />
+      </label>
+      <button>Submit</button>
     </form>
   )
 }

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 import * as yup from "yup";
 import schema from "./validation/LoginFormSchema.js";
-
 
 function Login() {
 
@@ -62,8 +61,7 @@ function Login() {
     };
 
     useEffect(() => {
-        schema
-            .isValid(loginInfo)
+        schema.isValid(loginInfo)
             .then((res) => {
                 setDisabled(!res)
             })

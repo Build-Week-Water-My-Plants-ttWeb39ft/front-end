@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 export default function NewPlantForm(Props) {
 
@@ -33,6 +33,14 @@ export default function NewPlantForm(Props) {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === 'checkbox' ? checked : value;
     setFormValues({...formValues, [name]: valueToUse})
+    
+  }
+
+  const onSubmit = evt => {
+    evt.preventDefault()
+    // const plantData =
+    // nickname:
+
   }
 
   const dayConditional = () => {
@@ -112,7 +120,7 @@ export default function NewPlantForm(Props) {
   // },[formValues.frequency])
 
   return(
-    <form>
+    <form onSubmit={onSubmit}>
       <h2>Add {formValues.nickname !== '' ? `${formValues.nickname}` : 'Your New Plant'} {formValues.species !== '' ? `the ${formValues.species}! 🎉` : ''}</h2>
       <label>
         <h3>Plant Name</h3>

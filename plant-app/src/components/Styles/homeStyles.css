@@ -1,0 +1,37 @@
+* {
+  color: white;
+}
+body {
+  background-image: url("./images/background3jpg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+.main {
+  width: 30%;
+  height: 100vh;
+  background: rgba(86, 86, 86, 0.3);
+  backdrop-filter: blur(10px); /*This gives the block out */
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+button {
+  padding: 8px 25px;
+  /* background: transparent; */
+  outline: none;
+  border: 2px solid #394f49;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 1;
+}
+button:hover {
+  opacity: 0.5;
+}
+a {
+  text-decoration: none;
+  color: black;
+}

@@ -16,8 +16,15 @@ export default function NewPlantForm(Props) {
     description:'',
     datePlanted:'',
     frequency:'',
-    days:'',
+    days:[],
     careInstructions:'',
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false,
+    sunday: false,
   }
 
   const [formValues, setFormValues] = useState(initialFormValues)
@@ -25,17 +32,85 @@ export default function NewPlantForm(Props) {
   const onChange = evt => {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === 'checkbox' ? checked : value;
-
     setFormValues({...formValues, [name]: valueToUse})
+  }
+
+  const dayConditional = () => {
+    const { monday, tuesday, wednesday, thursday, friday, saturday, sunday } = formValues
+    if (formValues.frequency === 'monthly' || formValues.frequency === 'biweekly'|| formValues.frequency === 'weekly'){
+      return (
+        <div>
+        <h5>What days of the week am I watered?</h5>
+        <label>
+          Monday
+          <input
+            name='monday'
+            type='checkbox'
+            onChange={onChange} 
+            />
+        </label>
+        <label>
+          Tuesday
+          <input
+            name='tuesday'
+            type='checkbox'
+            onChange={onChange} 
+            />
+        </label>
+        <label>
+          Wednesday
+          <input
+            name='wednesday'
+            type='checkbox'
+            onChange={onChange} 
+            />
+        </label>
+        <label>
+          Thursday
+          <input
+            name='thursday'
+            type='checkbox'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Friday
+          <input
+            name='friday'
+            type='checkbox'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Saturday
+          <input
+            name='saturday'
+            type='checkbox'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Sunday
+          <input
+            name='sunday'
+            type='checkbox'
+            onChange={onChange} 
+          />
+        </label>
+        </div>
+      )
+    } 
+    // else {setFormValues({...formValues, [monday]: false, [tuesday]: false, [wednesday]: false, [thursday]: false, [friday]: false, [saturday]: false, [sunday]: false})}
   }
 
   return(
     <form>
-      <h2>Add Your New Plant</h2>
+      <h2>Add {formValues.nickname !== '' ? `${formValues.nickname}` : 'Your New Plant'} {formValues.species !== '' ? `the ${formValues.species}! 🎉` : ''}</h2>
       <label>
         <h3>Plant Name</h3>
         <input
           name='nickname'
+          placeholder='Give me a name!🌱'
           type='text'
           value={formValues.nickname}
           onChange={onChange}
@@ -44,11 +119,14 @@ export default function NewPlantForm(Props) {
       <br/>
       <label>
         <h3>Plant Image</h3>
+        {formValues.image !== '' ? (<div class='plantImage'><img src={formValues.image} alt='Your plant!' /> <br/></div>) : ''}
         <input
           name='image'
-          type='file'
+          // type='file' //For file need to research how to actually have it upload to server
+          // accept='image/png, image/jpeg, image/gif'
+          type='text'
+          placeholder="Image URL for your plant!"
           value={formValues.image}
-          accept='image/png, image/jpeg, image/gif'
           onChange={onChange} 
         />
       </label>
@@ -58,9 +136,10 @@ export default function NewPlantForm(Props) {
         <input
           name='species'
           type='text'
+          placeholder='What is my species?'
           value={formValues.species}
           onChange={onChange} 
-        />
+          />
       </label>
       <br/>
       <label>
@@ -68,9 +147,10 @@ export default function NewPlantForm(Props) {
         <input
           name='description'
           type='text'
+          placeholder='Ex: Gift from Helen at foyer'
           value={formValues.description}
           onChange={onChange} 
-        />
+          />
       </label>
       <label>
         <h3>Date Planted</h3>
@@ -79,11 +159,11 @@ export default function NewPlantForm(Props) {
           type='date'
           value={formValues.datePlanted}
           onChange={onChange} 
-        />
+          />
       </label>
       <div class='wateringSchedule'>
         <h3>Watering Schedule</h3>
-        <h4>Am I watered Daily, Weekly, Biweekly, or Monthly?</h4>
+        <h5>Am I watered Daily, Weekly, Biweekly, or Monthly?</h5>
         <label>
           Daily
           <input
@@ -91,7 +171,7 @@ export default function NewPlantForm(Props) {
             type='radio'
             value='daily'
             onChange={onChange} 
-          />
+            />
         </label>
         <label>
           Weekly
@@ -100,7 +180,7 @@ export default function NewPlantForm(Props) {
             type='radio'
             value='weekly'
             onChange={onChange} 
-          />
+            />
         </label>
         <label>
           Biweekly
@@ -109,7 +189,7 @@ export default function NewPlantForm(Props) {
             type='radio'
             value='biweekly'
             onChange={onChange} 
-          />
+            />
         </label>
         <label>
           Monthly
@@ -120,6 +200,65 @@ export default function NewPlantForm(Props) {
             onChange={onChange} 
           />
         </label>
+        {/* {(formValues.frequency !== '' || formValues.frequency !== 'daily') ? <h1>test</h1> : ''} */}
+        {dayConditional()}
+        {/* <h5>What days of the week am I watered?</h5>
+        <label>
+          Monday
+          <input
+            name='monday'
+            type='checkbox'
+            onChange={onChange} 
+            />
+        </label>
+        <label>
+          Tuesday
+          <input
+            name='tuesday'
+            type='checkbox'
+            onChange={onChange} 
+            />
+        </label>
+        <label>
+          Wednesday
+          <input
+            name='wednesday'
+            type='checkbox'
+            onChange={onChange} 
+            />
+        </label>
+        <label>
+          Thursday
+          <input
+            name='thursday'
+            type='checkbox'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Friday
+          <input
+            name='friday'
+            type='checkbox'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Saturday
+          <input
+            name='saturday'
+            type='checkbox'
+            onChange={onChange} 
+          />
+        </label>
+        <label>
+          Sunday
+          <input
+            name='sunday'
+            type='checkbox'
+            onChange={onChange} 
+          />
+        </label> */}
       </div>
       <label>
         <h3>Additional Care Instructions</h3>
@@ -127,9 +266,11 @@ export default function NewPlantForm(Props) {
           name='careInstructions'
           type='text'
           value={formValues.careInstructions}
+          placeholder='Ex: Fertilize monthly'
           onChange={onChange} 
         />
       </label>
+      <br/>
       <button>Submit</button>
     </form>
   )

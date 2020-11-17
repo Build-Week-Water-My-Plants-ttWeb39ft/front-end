@@ -16,8 +16,10 @@ export default function NewPlantForm(Props) {
     description:'',
     datePlanted:'',
     frequency:'',
-    days:[],
     careInstructions:'',
+  }
+
+  const initialDayValues = {
     monday: false,
     tuesday: false,
     wednesday: false,
@@ -28,11 +30,18 @@ export default function NewPlantForm(Props) {
   }
 
   const [formValues, setFormValues] = useState(initialFormValues)
+  const [dayValues, setDayValues] = useState(initialDayValues)
 
   const onChange = evt => {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === 'checkbox' ? checked : value;
     setFormValues({...formValues, [name]: valueToUse})
+    
+  }
+  const onChangeDays = evt => {
+    const { name, value, type, checked } = evt.target;
+    const valueToUse = type === 'checkbox' ? checked : value;
+    setDayValues({...dayValues, [name]: valueToUse})
     
   }
 
@@ -53,7 +62,7 @@ export default function NewPlantForm(Props) {
           <input
             name='monday'
             type='checkbox'
-            onChange={onChange} 
+            onChange={onChangeDays} 
             />
         </label>
         <label>
@@ -61,7 +70,7 @@ export default function NewPlantForm(Props) {
           <input
             name='tuesday'
             type='checkbox'
-            onChange={onChange} 
+            onChange={onChangeDays} 
             />
         </label>
         <label>
@@ -69,7 +78,7 @@ export default function NewPlantForm(Props) {
           <input
             name='wednesday'
             type='checkbox'
-            onChange={onChange} 
+            onChange={onChangeDays} 
             />
         </label>
         <label>
@@ -77,7 +86,7 @@ export default function NewPlantForm(Props) {
           <input
             name='thursday'
             type='checkbox'
-            onChange={onChange} 
+            onChange={onChangeDays} 
           />
         </label>
         <label>
@@ -85,7 +94,7 @@ export default function NewPlantForm(Props) {
           <input
             name='friday'
             type='checkbox'
-            onChange={onChange} 
+            onChange={onChangeDays} 
           />
         </label>
         <label>
@@ -93,7 +102,7 @@ export default function NewPlantForm(Props) {
           <input
             name='saturday'
             type='checkbox'
-            onChange={onChange} 
+            onChange={onChangeDays} 
           />
         </label>
         <label>
@@ -101,7 +110,7 @@ export default function NewPlantForm(Props) {
           <input
             name='sunday'
             type='checkbox'
-            onChange={onChange} 
+            onChange={onChangeDays} 
           />
         </label>
         </div>
@@ -163,7 +172,7 @@ export default function NewPlantForm(Props) {
         <input
           name='description'
           type='text'
-          placeholder='Ex: Gift from Helen at foyer'
+          placeholder='Ex: Gift from Helen in den'
           value={formValues.description}
           onChange={onChange} 
           />
@@ -187,6 +196,7 @@ export default function NewPlantForm(Props) {
             type='radio'
             value='daily'
             onChange={onChange} 
+            onClick={() => setDayValues(initialDayValues)}
             />
         </label>
         <label>

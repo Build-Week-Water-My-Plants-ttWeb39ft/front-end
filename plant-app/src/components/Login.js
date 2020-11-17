@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import * as yup from "yup";
 import schema from "./validation/LoginFormSchema.js";
+import "./Login.css"
+
+// Styled Components Start //
+
+
+
+// Styled Components End //
 
 function Login() {
 
@@ -71,18 +78,13 @@ function Login() {
         <>
             {/* Header */}        
             <header>
-                <nav>
-                    <a href="">Home</a>
-                    <a href="">About</a>
-                    <a href="">Reviews</a>
-                    <a href="">Contact</a>
-                </nav>
+                <h1>Plant App</h1>
             </header>
-
-            {/* Form */}
+            <h1>Welcome Back! <br/>Your Plants Miss You...</h1>
+            {/* Form with Inputs */}
             <form onSubmit={onSubmit}>
+                <h2>Login</h2>
                 <label>
-                    <h1>Welcome Back! <br/>Your Plants Miss You...</h1>           
                     <h3>Username: </h3>
                 </label>
                 <input 
@@ -107,23 +109,19 @@ function Login() {
                 />
                 <br/>                
                 <button disabled={disabled}>Login</button>
+                <br/> 
+
+                {/* New User Button */}
+                <button className="newAccountBtn" href="#">Create New Account</button>
             </form>
 
             {/* Error Messages */}
             <p>{error.username}</p>
             <p>{error.password}</p>
 
-            {/* New User Link */}
-            <a href="">New User? Sign Up Here!</a>
-
             {/* Footer */}
             <footer>
-                <nav>
-                    <a href="">Home</a>
-                    <a href="">About</a>
-                    <a href="">Reviews</a>
-                    <a href="">Contact</a>
-                </nav>
+                <p>Plant App &#169; 2020</p>
             </footer>
         </>
     )

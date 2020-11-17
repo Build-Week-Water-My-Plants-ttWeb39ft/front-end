@@ -43,7 +43,7 @@ function Signup() {
     email: yup.string().required("Email is required"),
     phone: yup
       .string()
-      .required("Email is required")
+      .required("Phone Number is required")
       .min(7, "Phone Number is required"),
     password: yup
       .string()

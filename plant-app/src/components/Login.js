@@ -82,7 +82,7 @@ function Login() {
             {/* Form */}
             <form onSubmit={onSubmit}>
                 <label>
-                    <h1>Welcome Back! <br/>Your Plants Miss you</h1>           
+                    <h1>Welcome Back! <br/>Your Plants Miss You...</h1>           
                     <h3>Username: </h3>
                 </label>
                 <input 

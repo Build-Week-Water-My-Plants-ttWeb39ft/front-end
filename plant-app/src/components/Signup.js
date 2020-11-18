@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./signupStyle.css";
 import * as yup from "yup";
+import { axiosWithAuth } from "./axiosWithAuth";
+import history from './history'
 
 function Signup() {
   const [form, setForm] = useState({
@@ -74,9 +76,10 @@ function Signup() {
       password: form.password.trim(),
       terms: form.terms,
     };
-    axios
+    axiosWithAuth()
       .post("https://reqres.in/api/users", newUser)
       .then((res) => {
+        history.push("/Login");
         setForm({
           //Doesn't clear form but it needs to
           username: "",

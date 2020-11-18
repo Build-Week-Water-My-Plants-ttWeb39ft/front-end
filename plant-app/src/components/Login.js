@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 import * as yup from "yup";
 import schema from "./validation/LoginFormSchema.js";
-import "./Login.css"
 import styled from "styled-components";
 import { Spring } from "react-spring/renderprops";
+import "./Login.css";
+import history from './history';
 
 // Styled Components Start //
 
@@ -58,17 +59,29 @@ function Login() {
         textFieldChange(evt.target.name, evt.target.value)
     };
 
-    const onSubmit = (evt) => {
-        evt.preventDefault();
-        console.log("working")
-        const user = {
-            username: loginInfo.username,
-            password: loginInfo.password
-        }
-        setLoginInfo({
-            username: "",
-            password: ""
+    // const onSubmit = (evt) => {
+    //     evt.preventDefault();
+    //     console.log("working")
+    //     const user = {
+    //         username: loginInfo.username,
+    //         password: loginInfo.password
+    //     }
+    //     setLoginInfo({
+    //         username: "",
+    //         password: ""
+    //     })
+    // };
+
+    const onSubmit = e => {
+        e.preventDefault();
+        axios.post('https://water-my-plants-tt39.herokuapp.com/login', loginInfo)
+        .then(req => {
+            localStorage.setItem("token", req.data.payload);
+            history.push('/My-plants')
         })
+        .catch( err => {
+            console.log(err)
+        });
     };
 
     useEffect(() => {

@@ -2,10 +2,12 @@
   color: white;
 }
 body {
-  background-image: url("./images/background3jpg.jpg");
+  background-color: #ebebeb;
+  background-image: url("./images/background5.jpg");
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
+  background-position: top;
+  background-size: cover;
+  /* width: 100%; */
 }
 .main {
   width: 30%;
@@ -34,4 +36,7 @@ button:hover {
 a {
   text-decoration: none;
   color: black;
+}
+.furtherDown {
+  margin-top: 50%;
 }

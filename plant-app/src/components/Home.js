@@ -6,18 +6,26 @@ function Home() {
   return (
     <>
       <div className="main">
-        <h1>THE Plant App</h1>
-        <Link to="/Login">
-          <button type="button">
-            Login
-          </button>
-        </Link>
-        <Link to="/Signup">
-          <button type="button">
-            Sign up!
-          </button>
-        </Link>
+        <div className="logo"></div>
+        <div className="furtherDown">
+          <h1>The Plant App</h1>
+          <Link to="/Login">
+            <button type="button">Login</button>
+          </Link>
+          <br></br>
+          <Link to="/Signup">
+            <button type="button">Sign up!</button>
+          </Link>
+        </div>
       </div>
+      {/* <div>
+        <h2>Real reviews</h2>
+        <p>I would use this!</p>
+      </div> */}
+      {/* Footer */}
+      {/* <footer>
+        <p>Cool Plant App &#169; 2020</p>
+      </footer> */}
     </>
   );
 }

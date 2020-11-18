@@ -12,9 +12,6 @@ const StyledForm = styled.form`
     margin: 5% 20%;
 `
 
-
-
-
 // Styled Components End //
 
 function Login() {

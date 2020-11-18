@@ -15,6 +15,7 @@ function Signup() {
     password: "",
     terms: false,
   });
+  //
   const [disabled, setDisabled] = useState(true);
   const [errors, setErrors] = useState({
     username: "",

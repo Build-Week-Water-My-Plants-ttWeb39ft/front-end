@@ -78,35 +78,37 @@ function Login() {
         <>
             {/* Header */}        
             <header>
-                <h1>Plant App</h1>
+                <h1>Cool Plant App</h1>
             </header>
-            <h1>Welcome Back! <br/>Your Plants Miss You...</h1>
+
             {/* Form with Inputs */}
             <form onSubmit={onSubmit}>
-                <h2>Login</h2>
-                <label>
-                    <h3>Username: </h3>
-                </label>
-                <input 
-                    id="username"
-                    type="text"
-                    name="username"
-                    value={loginInfo.username}
-                    placeholder="Your Username"
-                    onChange={onChange}
-                />
-                <br/>
-                <label>       
-                    <h3>Password: </h3>
-                </label>
-                <input
-                    onChange={onChange}
-                    name="password"
-                    value={loginInfo.password}
-                    type="text"
-                    password="password"
-                    placeholder="Your Password"
-                />
+                <h2>LOGIN</h2>
+                <div className="fieldsContainer">
+                    <label>
+                        <h3>Username: </h3>
+                    </label>
+                    <input 
+                        id="username"
+                        type="text"
+                        name="username"
+                        value={loginInfo.username}
+                        placeholder="Your Username"
+                        onChange={onChange}
+                    />
+                    <br/>
+                    <label>       
+                        <h3>Password: </h3>
+                    </label>
+                    <input
+                        onChange={onChange}
+                        name="password"
+                        value={loginInfo.password}
+                        type="text"
+                        password="password"
+                        placeholder="Your Password"
+                    />
+                </div>
                 <br/>                
                 <button disabled={disabled}>Login</button>
                 <br/> 
@@ -121,7 +123,7 @@ function Login() {
 
             {/* Footer */}
             <footer>
-                <p>Plant App &#169; 2020</p>
+                <p>Cool Plant App &#169; 2020</p>
             </footer>
         </>
     )

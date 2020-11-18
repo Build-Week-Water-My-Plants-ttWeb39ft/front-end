@@ -2,6 +2,13 @@ body {
     background-image: url("../images/kaufmann-mercantile-a7Woj8W6J0s-unsplash.jpg");
     background-position: center;
     background-color: #330F0A;
+    background-size: cover;
+    position: relative;
+}
+
+header {
+    background-color: #330F0A;
+    padding: 2%;
 }
 
 h1 {
@@ -10,10 +17,6 @@ h1 {
 }
 
 h2 {
-    margin-top: 0;
-    margin-bottom: 2%;
-    margin-left: 0;
-    margin-right: 0;
     padding: 1% 0;
 }
 
@@ -25,13 +28,15 @@ form {
     background-color: #394f49e5;
     color: #fff;
     padding: 3% 0;
+    margin: 10% 30%;
+    border-radius: 10px;
 }
 
 input {
     padding: 1%;
     border-radius: 10px;
-    width: 400px;
-    height: 20px;
+    width: 60%;
+    height: 50%;
 }
 
 button {

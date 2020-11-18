@@ -7,6 +7,6 @@ export default yup.object().shape({
         .min(2, "*Name must be at least 2 characters"),
     password: yup
         .string()
-        .required("*Pizza size is required")
+        .required("*Password is required")
         .min(8, "*Password must be at least 8 characters")
 });

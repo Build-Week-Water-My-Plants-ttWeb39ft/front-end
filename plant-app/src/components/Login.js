@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as yup from "yup";
 import schema from "./validation/LoginFormSchema.js";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Spring } from "react-spring/renderprops";
 import "./Login.css";
@@ -14,83 +13,21 @@ const StyledForm = styled.form`
     margin: 5% 20%;
 `
 
-
 // Styled Components End //
 
 function Login() {
-  const [loginInfo, setLoginInfo] = useState({
-    username: "",
-    password: "",
-  });
 
-  const [disabled, setDisabled] = useState(false);
-
-  const [error, setError] = useState({
-    username: "",
-    password: "",
-  });
-
-  const validateLogin = (name, value) => {
-    yup
-      .reach(schema, name)
-      .validate(value)
-      .then((res) => {
-        setError({
-          ...error,
-          [name]: "",
-        });
-      })
-      .catch((err) => {
-        setError({
-          ...error,
-          [name]: err.errors[0],
-        });
-      });
-  };
-
-  const textFieldChange = (name, value) => {
-    validateLogin(name, value);
-    setLoginInfo({
-      ...loginInfo,
-      [name]: value,
-    });
-  };
-
-  const onChange = (evt) => {
-    textFieldChange(evt.target.name, evt.target.value);
-  };
-
-  // const onSubmit = (evt) => {
-  //     evt.preventDefault();
-  //     console.log("working")
-  //     const user = {
-  //         username: loginInfo.username,
-  //         password: loginInfo.password
-  //     }
-  //     setLoginInfo({
-  //         username: "",
-  //         password: ""
-  //     })
-  // };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    axios
-      .post("https://water-my-plants-tt39.herokuapp.com/login", loginInfo)
-      .then((req) => {
-        localStorage.setItem("token", req.data.payload);
-        history.push("/My-plants");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    schema.isValid(loginInfo).then((res) => {
-      setDisabled(!res);
+    const [ loginInfo, setLoginInfo ] = useState({
+        username: "",
+        password: ""
     });
 
+    const [ disabled, setDisabled ] = useState(false);
+
+    const [ error, setError ] = useState({
+        username: "",
+        password: ""
+    });
 
     const validateLogin = (name, value) => {
         yup
@@ -199,12 +136,8 @@ function Login() {
                 <button className="loginBtn" disabled={disabled}>Login</button>
                 <br/> 
 
-                  {/* New User Button */}
-        <Link to="/Signup">
-          <button className="newAccountBtn" >
-            Create New Account
-          </button>
-        </Link>
+                {/* New User Button */}
+                <button className="newAccountBtn" href="#">Create New Account</button>
             </StyledForm>
             )}
             </Spring>
@@ -219,7 +152,6 @@ function Login() {
             </footer>
         </>
     )
-
 }
 
-export default Login;
+export default Login; 

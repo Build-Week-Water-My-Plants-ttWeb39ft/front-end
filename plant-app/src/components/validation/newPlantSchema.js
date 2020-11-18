@@ -2,8 +2,9 @@ import * as yup from 'yup';
 
 export default yup.object().shape({
     nickname: yup.string()
-      .required('Your plant child needs name'),
+      .required('Your plant needs a name'),
     image:yup.string(),
+      // .url('Please provide an image URL') // Research this to only allow an image url
     species:yup.string()
       .required('What is the species?'),
     description:yup.string(),

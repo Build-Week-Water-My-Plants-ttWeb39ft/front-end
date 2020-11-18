@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import * as yup from 'yup'
+import newPlantSchema from './validation/newPlantSchema'
+import axios from 'axios'
 
 export default function NewPlantForm(Props) {
 
@@ -8,6 +11,7 @@ export default function NewPlantForm(Props) {
 //Monthly, bi-weekly, weeekly, daily
 //what days in  a string
 
+//required Name, species, frequency,
 
   const initialFormValues = {
     nickname: '',
@@ -29,6 +33,21 @@ export default function NewPlantForm(Props) {
     sunday: false,
   }
 
+  const postPlant = newPlant => {
+    axios
+      .post('https://reqres.in/api/users', newPlant)
+      .then(res => {
+        console.log('Success:',res)
+      })
+      .catch(err => {
+        console.log('Error:',err)
+      })
+      .finally(()=>{
+        setDayValues(initialDayValues);
+        setFormValues(initialFormValues);
+      })
+  }
+
   const [formValues, setFormValues] = useState(initialFormValues)
   const [dayValues, setDayValues] = useState(initialDayValues)
 
@@ -45,11 +64,21 @@ export default function NewPlantForm(Props) {
     
   }
 
+
   const onSubmit = evt => {
     evt.preventDefault()
-    // const plantData =
-    // nickname:
-
+    const newPlant ={
+      nickname: formValues.nickname.trim(),
+      image: formValues.image.trim(),
+      species: formValues.species.trim(),
+      description: formValues.description.trim(),
+      datePlanted: formValues.datePlanted,
+      frequency: formValues.frequency,
+      careInstructions: formValues.careInstructions.trim(),
+      days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString()
+    }
+    console.log(newPlant);
+    postPlant(newPlant);
   }
 
   const dayConditional = () => {
@@ -62,6 +91,7 @@ export default function NewPlantForm(Props) {
           <input
             name='monday'
             type='checkbox'
+            checked={dayValues.monday}
             onChange={onChangeDays} 
             />
         </label>
@@ -70,6 +100,7 @@ export default function NewPlantForm(Props) {
           <input
             name='tuesday'
             type='checkbox'
+            checked={dayValues.tuesday}
             onChange={onChangeDays} 
             />
         </label>
@@ -78,6 +109,7 @@ export default function NewPlantForm(Props) {
           <input
             name='wednesday'
             type='checkbox'
+            checked={dayValues.wednesday}
             onChange={onChangeDays} 
             />
         </label>
@@ -86,6 +118,7 @@ export default function NewPlantForm(Props) {
           <input
             name='thursday'
             type='checkbox'
+            checked={dayValues.thursday}
             onChange={onChangeDays} 
           />
         </label>
@@ -94,6 +127,7 @@ export default function NewPlantForm(Props) {
           <input
             name='friday'
             type='checkbox'
+            checked={dayValues.friday}
             onChange={onChangeDays} 
           />
         </label>
@@ -102,6 +136,7 @@ export default function NewPlantForm(Props) {
           <input
             name='saturday'
             type='checkbox'
+            checked={dayValues.saturday}
             onChange={onChangeDays} 
           />
         </label>
@@ -110,6 +145,7 @@ export default function NewPlantForm(Props) {
           <input
             name='sunday'
             type='checkbox'
+            checked={dayValues.sunday}
             onChange={onChangeDays} 
           />
         </label>
@@ -195,6 +231,7 @@ export default function NewPlantForm(Props) {
             name='frequency'
             type='radio'
             value='daily'
+            checked={formValues.frequency === 'daily'}
             onChange={onChange} 
             onClick={() => setDayValues(initialDayValues)}
             />
@@ -205,6 +242,7 @@ export default function NewPlantForm(Props) {
             name='frequency'
             type='radio'
             value='weekly'
+            checked={formValues.frequency === 'weekly'}
             onChange={onChange} 
             />
         </label>
@@ -214,6 +252,7 @@ export default function NewPlantForm(Props) {
             name='frequency'
             type='radio'
             value='biweekly'
+            checked={formValues.frequency === 'biweekly'}
             onChange={onChange} 
             />
         </label>
@@ -223,6 +262,7 @@ export default function NewPlantForm(Props) {
             name='frequency'
             type='radio'
             value='monthly'
+            checked={formValues.frequency === 'Monthly'}
             onChange={onChange} 
           />
         </label>

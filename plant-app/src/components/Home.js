@@ -23,9 +23,11 @@ function Home() {
         <p>I would use this!</p>
       </div> */}
       {/* Footer */}
-      {/* <footer>
-        <p>Cool Plant App &#169; 2020</p>
-      </footer> */}
+
+      {/* Footer */}
+      <footer>
+        <p className="footerFontColor">Cool Plant App &#169; 2020</p>
+      </footer>
     </>
   );
 }

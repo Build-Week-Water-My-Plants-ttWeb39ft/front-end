@@ -6,155 +6,155 @@ import styled from "styled-components";
 import { Spring } from "react-spring/renderprops";
 import { Link } from "react-router-dom";
 import "./Login.css";
-import history from './history';
+import history from "./history";
 
 // Styled Components Start //
 
 const StyledForm = styled.form`
-    margin: 5% 20%;
-`
+  margin: 5% 20%;
+`;
 
 // Styled Components End //
 
 function Login() {
+  const [loginInfo, setLoginInfo] = useState({
+    username: "",
+    password: "",
+  });
 
-    const [ loginInfo, setLoginInfo ] = useState({
-        username: "",
-        password: ""
-    });
+  const [disabled, setDisabled] = useState(false);
 
-    const [ disabled, setDisabled ] = useState(false);
+  const [error, setError] = useState({
+    username: "",
+    password: "",
+  });
 
-    const [ error, setError ] = useState({
-        username: "",
-        password: ""
-    });
-
-    const validateLogin = (name, value) => {
-        yup
-            .reach(schema, name)
-            .validate(value)
-            .then((res) => {
-                setError({
-                    ...error,
-                    [name]: ""
-                })
-            })
-            .catch((err) => {
-                setError({
-                    ...error,
-                    [name]: err.errors[0]
-                })
-            })
-    };
-
-    const textFieldChange = (name, value) => {
-        validateLogin(name, value)
-        setLoginInfo({
-            ...loginInfo,
-            [name]: value
-        })
-    };
-
-    const onChange = (evt) => {
-        textFieldChange(evt.target.name, evt.target.value)
-    };
-
-    // const onSubmit = (evt) => {
-    //     evt.preventDefault();
-    //     console.log("working")
-    //     const user = {
-    //         username: loginInfo.username,
-    //         password: loginInfo.password
-    //     }
-    //     setLoginInfo({
-    //         username: "",
-    //         password: ""
-    //     })
-    // };
-
-    const onSubmit = e => {
-        e.preventDefault();
-        axios.post('https://water-my-plants-tt39.herokuapp.com/login', loginInfo)
-        .then(req => {
-            localStorage.setItem("token", req.data.payload);
-            history.push('/My-plants')
-        })
-        .catch( err => {
-            console.log(err)
+  const validateLogin = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then((res) => {
+        setError({
+          ...error,
+          [name]: "",
         });
-    };
+      })
+      .catch((err) => {
+        setError({
+          ...error,
+          [name]: err.errors[0],
+        });
+      });
+  };
 
-    useEffect(() => {
-        schema.isValid(loginInfo)
-            .then((res) => {
-                setDisabled(!res)
-            })
-    }, [loginInfo]);
+  const textFieldChange = (name, value) => {
+    validateLogin(name, value);
+    setLoginInfo({
+      ...loginInfo,
+      [name]: value,
+    });
+  };
 
-    return (
-        <>
-            {/* Header */}        
-            <header>
-                <h1>Cool Plant App</h1>
-            </header>
+  const onChange = (evt) => {
+    textFieldChange(evt.target.name, evt.target.value);
+  };
 
-            {/* Form with Inputs */}
-            <Spring
-                    from={{ opacity: 0, marginTop: - 500 }}
-                    to={{ opacity: 1, marginTop: 0 }}
-                >
-                    {props => (
-            <StyledForm style={props} onSubmit={onSubmit}>
+  // const onSubmit = (evt) => {
+  //     evt.preventDefault();
+  //     console.log("working")
+  //     const user = {
+  //         username: loginInfo.username,
+  //         password: loginInfo.password
+  //     }
+  //     setLoginInfo({
+  //         username: "",
+  //         password: ""
+  //     })
+  // };
 
-                <div className="fieldsContainer">
-                    <label>
-                        <h2>LOGIN</h2>
-                        <h3>Username: </h3>
-                    </label>
-                    <input 
-                        id="username"
-                        type="text"
-                        name="username"
-                        value={loginInfo.username}
-                        placeholder="Your Username"
-                        onChange={onChange}
-                    />
-                    <br/>
-                    <label>       
-                        <h3>Password: </h3>
-                    </label>
-                    <input
-                        onChange={onChange}
-                        name="password"
-                        value={loginInfo.password}
-                        type="password"
-                        password="password"
-                        placeholder="Your Password"
-                    />
-                </div>
-                <br/>                
-                <button className="loginBtn" disabled={disabled}>Login</button>
-                <br/> 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://water-my-plants-tt39.herokuapp.com/login", loginInfo)
+      .then((req) => {
+        localStorage.setItem("token", req.data.payload);
+        history.push("/My-plants");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-                {/* New User Button */}
-                <Link to="/Signup">
-                    <button className="newAccountBtn" >Create New Account</button>
-                </Link>
-            </StyledForm>
-            )}
-            </Spring>
+  useEffect(() => {
+    schema.isValid(loginInfo).then((res) => {
+      setDisabled(!res);
+    });
+  }, [loginInfo]);
 
-            {/* Error Messages */}
-            <p>{error.username}</p>
-            <p>{error.password}</p>
+  return (
+    <>
+      {/* Header */}
+      <header>
+        <h1>Cool Plant App</h1>
+      </header>
 
-            {/* Footer */}
-            <footer>
-                <p className="footerFontColor">Cool Plant App &#169; 2020</p>
-            </footer>
-        </>
-    )
+      {/* Form with Inputs */}
+      <Spring
+        from={{ opacity: 0, marginTop: -500 }}
+        to={{ opacity: 1, marginTop: 0 }}
+      >
+        {(props) => (
+          <StyledForm style={props} onSubmit={onSubmit}>
+            <div className="fieldsContainer">
+              <label>
+                <h2>LOGIN</h2>
+                <h3>Username: </h3>
+              </label>
+              <input
+                id="username"
+                type="text"
+                name="username"
+                value={loginInfo.username}
+                placeholder="Your Username"
+                onChange={onChange}
+              />
+              <br />
+              <label>
+                <h3>Password: </h3>
+              </label>
+              <input
+                onChange={onChange}
+                name="password"
+                value={loginInfo.password}
+                type="password"
+                password="password"
+                placeholder="Your Password"
+              />
+            </div>
+            <br />
+            <button className="loginBtn" disabled={disabled}>
+              Login
+            </button>
+            <br />
+
+            {/* New User Button */}
+            <Link to="/Signup">
+              <button className="newAccountBtn">Create New Account</button>
+            </Link>
+          </StyledForm>
+        )}
+      </Spring>
+
+      {/* Error Messages */}
+      <p>{error.username}</p>
+      <p>{error.password}</p>
+
+      {/* Footer */}
+      <footer>
+        <p className="footerFontColor">Cool Plant App &#169; 2020</p>
+      </footer>
+    </>
+  );
 }
 
-export default Login; 
+export default Login;

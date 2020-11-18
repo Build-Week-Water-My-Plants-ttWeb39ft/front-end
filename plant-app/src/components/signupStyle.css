@@ -1,25 +1,37 @@
 * {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
 }
-body {
-  background-color: wheat;
+/* .background-color {
+  background-color: #ebebeb;
+  background-image: url("./Styles/images/background5.jpg");
+  background-repeat: no-repeat;
+  /* background-position: top; */
+
+.signupForm {
+  width: 900px;
+  text-align: center;
 }
 .signup {
+  margin-top: -200px;
+  margin-bottom: -80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 30%;
-  background-color: rgba(51, 15, 10, 0.25);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  width: 30%;
-  border-radius: 10%;
-  padding: 5%;
+
+  /* background-color: rgba(51, 15, 10, 0.25); */
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); */
 }
+
 .form-control {
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  letter-spacing: 1px;
+  color: black;
   border: 2px solid #2e6559;
   border-radius: 4px;
   display: black;
-  width: 100%;
+  width: 90%;
   padding: 10px;
   font-size: 14px;
 }

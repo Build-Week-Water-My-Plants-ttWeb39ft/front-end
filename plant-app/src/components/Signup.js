@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+//import axios from "axios";
 import "./signupStyle.css";
 import * as yup from "yup";
+import { Link } from "react-router-dom";
 import { axiosWithAuth } from "./axiosWithAuth";
 import history from "./history";
 
@@ -100,15 +101,20 @@ function Signup() {
   return (
     <>
       {/* Header */}
-      <header>
+      <header className="margin">
         <h1>Cool Plant App</h1>
       </header>
+
       <div className="background-color">
         <div className="signup">
           <form className="signupForm" onSubmit={submit}>
+            <h2>
+              <u>Signup</u>
+            </h2>
             <label>
-              Username{" "}
+              Username
               <input
+                value={form.username}
                 className="form-control"
                 onChange={change}
                 name="username"
@@ -121,6 +127,7 @@ function Signup() {
             <label>
               Your First Name{" "}
               <input
+                value={form.firstName}
                 className="form-control"
                 onChange={change}
                 name="firstName"
@@ -133,6 +140,7 @@ function Signup() {
             <label>
               Your Last Name{" "}
               <input
+                value={form.lastName}
                 className="form-control"
                 onChange={change}
                 name="lastName"
@@ -145,6 +153,7 @@ function Signup() {
             <label>
               Your Email{" "}
               <input
+                value={form.email}
                 className="form-control"
                 onChange={change}
                 name="email"
@@ -157,6 +166,7 @@ function Signup() {
             <label>
               Your Phone Number{" "}
               <input
+                value={form.phone}
                 className="form-control"
                 onChange={change}
                 name="phone"
@@ -169,6 +179,7 @@ function Signup() {
             <label>
               Password{" "}
               <input
+                value={form.password}
                 className="form-control"
                 onChange={change}
                 name="password"
@@ -195,9 +206,16 @@ function Signup() {
             <button className="form-control" disabled={disabled} type="submit">
               Submit
             </button>
+            <Link to="/Login">
+              <button className="form-control">Got an account? Login</button>
+            </Link>
           </form>
         </div>
       </div>
+      {/* Footer */}
+      <footer>
+        <p className="footerFontColor">Cool Plant App &#169; 2020</p>
+      </footer>
     </>
   );
 }

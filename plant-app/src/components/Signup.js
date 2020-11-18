@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./signupStyle.css";
 import * as yup from "yup";
 
 function Signup() {
@@ -42,7 +43,7 @@ function Signup() {
     email: yup.string().required("Email is required"),
     phone: yup
       .string()
-      .required("Email is required")
+      .required("Phone Number is required")
       .min(7, "Phone Number is required"),
     password: yup
       .string()
@@ -93,89 +94,101 @@ function Signup() {
   };
 
   return (
-    <>
+    <div className="background-color">
       <h1>Sign up!</h1>
+      <div className="signup">
+        <form onSubmit={submit}>
+          <label>
+            Username{" "}
+            <input
+              className="form-control"
+              onChange={change}
+              name="username"
+              type="text"
+              placeholder="Your Username"
+            />
+            <div style={{ color: "red" }}>{errors.username}</div>
+          </label>
+          <br></br>
+          <label>
+            Your First Name{" "}
+            <input
+              className="form-control"
+              onChange={change}
+              name="firstName"
+              type="text"
+              placeholder="Your First Name"
+            />
+          </label>
+          <div style={{ color: "red" }}>{errors.firstName}</div>
+          <br></br>
+          <label>
+            Your Last Name{" "}
+            <input
+              className="form-control"
+              onChange={change}
+              name="lastName"
+              type="text"
+              placeholder="Your Last Name"
+            />
+          </label>
+          <div style={{ color: "red" }}>{errors.lastName}</div>
+          <br></br>
+          <label>
+            Your Email{" "}
+            <input
+              className="form-control"
+              onChange={change}
+              name="email"
+              type="email"
+              placeholder="Your Email"
+            />
+          </label>
+          <div style={{ color: "red" }}>{errors.email}</div>
+          <br></br>
+          <label>
+            Your Phone Number{" "}
+            <input
+              className="form-control"
+              onChange={change}
+              name="phone"
+              type="text"
+              placeholder="Your Phone number"
+            />
+          </label>
+          <div style={{ color: "red" }}>{errors.phone}</div>
+          <br></br>
+          <label>
+            Password{" "}
+            <input
+              className="form-control"
+              onChange={change}
+              name="password"
+              type="password"
+              placeholder="Password"
+            />
+          </label>
 
-      <form onSubmit={submit}>
-        <label>
-          Username{" "}
-          <input
-            onChange={change}
-            name="username"
-            type="text"
-            placeholder="Your Username"
-          />
-          <div style={{ color: "red" }}>{errors.username}</div>
-        </label>
-        <br></br>
-        <label>
-          Your First Name{" "}
-          <input
-            onChange={change}
-            name="firstName"
-            type="text"
-            placeholder="Your First Name"
-          />
-        </label>
-        <div style={{ color: "red" }}>{errors.firstName}</div>
-        <br></br>
-        <label>
-          Your Last Name{" "}
-          <input
-            onChange={change}
-            name="lastName"
-            type="text"
-            placeholder="Your Last Name"
-          />
-        </label>
-        <div style={{ color: "red" }}>{errors.lastName}</div>
-        <br></br>
-        <label>
-          Your Email{" "}
-          <input
-            onChange={change}
-            name="email"
-            type="email"
-            placeholder="Your Email"
-          />
-        </label>
-        <div style={{ color: "red" }}>{errors.email}</div>
-        <br></br>
-        <label>
-          Your Phone Number{" "}
-          <input
-            onChange={change}
-            name="phone"
-            type="text"
-            placeholder="Your Phone number"
-          />
-        </label>
-        <div style={{ color: "red" }}>{errors.phone}</div>
-        <br></br>
-        <label>
-          Password{" "}
-          <input
-            onChange={change}
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-        </label>
+          <div style={{ color: "red" }}>{errors.password}</div>
+          <br></br>
 
-        <div style={{ color: "red" }}>{errors.password}</div>
-        <br></br>
-
-        <label>
-          Terms and Conditions
-          <input onChange={change} name="terms" type="checkbox" />
-        </label>
-        <div style={{ color: "red" }}>{errors.terms}</div>
-        <br></br>
-        <button disabled={disabled} type="submit">
-          Submit
-        </button>
-      </form>
-    </>
+          <label>
+            Terms and Conditions
+            <input
+              className="form-control"
+              onChange={change}
+              name="terms"
+              type="checkbox"
+            />
+          </label>
+          <div style={{ color: "red" }}>{errors.terms}</div>
+          <br></br>
+          <button className="form-control" disabled={disabled} type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

@@ -139,7 +139,7 @@ function Login() {
 
                 {/* New User Button */}
                 <Link to="/Signup">
-                    <button className="newAccountBtn" href="#">Create New Account</button>
+                    <button className="newAccountBtn" >Create New Account</button>
                 </Link>
             </StyledForm>
             )}

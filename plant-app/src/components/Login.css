@@ -8,7 +8,8 @@ body {
 
 header {
     background-color: #330F0A;
-    padding: 2%;
+    padding: 1%;
+    margin-bottom: 5%;
 }
 
 h1 {
@@ -18,6 +19,7 @@ h1 {
 
 h2 {
     padding: 1% 0;
+    margin-top: 1%;
 }
 
 h3 {
@@ -36,25 +38,34 @@ input {
     padding: 1%;
     border-radius: 10px;
     width: 60%;
-    height: 50%;
 }
 
-button {
+button.loginBtn {
     margin-top: 2%;
-    padding: 10px 50px;
-    border-radius: 10px;
-    color: #fff;
+    padding: 10px 0;
     background-color: #65743A;
-    font-weight: bold;
-    font-size: 1rem;
-    margin-bottom: 2%;
-    width: 15rem;
+    width: 30%;
+    font-size: 0.8rem;
 }
 
 button.newAccountBtn {
+    margin-top: 2%;
+    padding: 10px 10px;
+    color: #fff;
     background-color: #330F0A;
+    margin-bottom: 2%;
+    width: 30%;
+    font-size: 0.8rem;
 }
 
 footer {
-    color: #fff;
+    background-color: #EFDD8D;
+    margin: 0;
+    padding: 1%;
+}
+
+p.footerFontColor {
+    color: #394F49;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
 }

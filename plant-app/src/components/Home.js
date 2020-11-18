@@ -18,16 +18,17 @@ function Home() {
           </Link>
         </div>
       </div>
+
       {/* <div>
         <h2>Real reviews</h2>
         <p>I would use this!</p>
       </div> */}
       {/* Footer */}
 
-      {/* Footer */}
-      <footer>
+      {/* Footer here */}
+      {/* <footer>
         <p className="footerFontColor">Cool Plant App &#169; 2020</p>
-      </footer>
+      </footer> */}
     </>
   );
 }

@@ -5,6 +5,7 @@ import schema from "./validation/LoginFormSchema.js";
 import "./Login.css"
 import styled from "styled-components";
 import { Spring } from "react-spring/renderprops";
+import { Link } from "react-router-dom";
 
 // Styled Components Start //
 
@@ -124,7 +125,9 @@ function Login() {
                 <br/> 
 
                 {/* New User Button */}
-                <button className="newAccountBtn" href="#">Create New Account</button>
+                <Link to="/Signup">
+                    <button className="newAccountBtn" href="#">Create New Account</button>
+                </Link>
             </StyledForm>
             )}
             </Spring>

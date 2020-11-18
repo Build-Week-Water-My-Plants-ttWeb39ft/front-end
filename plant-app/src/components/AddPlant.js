@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
-import newPlantSchema from './validation/newPlantSchema'
+import schema from './validation/newPlantSchema'
 import axios from 'axios'
 
 export default function NewPlantForm(Props) {
@@ -19,7 +19,7 @@ export default function NewPlantForm(Props) {
     species:'',
     description:'',
     datePlanted:'',
-    frequency:'',
+    frequency:'daily',
     careInstructions:'',
   }
 
@@ -33,6 +33,31 @@ export default function NewPlantForm(Props) {
     sunday: false,
   }
 
+  const initialFormErrors = {
+    nickname: '',
+    species:'',
+    frequency:'',
+  }
+  
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [dayValues, setDayValues] = useState(initialDayValues);
+  const [disabled, setDisabled] = useState(true);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+
+  const validate = (name, value) => {
+    yup
+      .reach(schema, name)
+        .validate(value)
+        .then(() => setFormErrors({...formErrors, [name]:''}))
+        .catch(err => {
+          console.log(err)
+          setFormErrors({
+            ...formErrors,
+            [name]: err.errors[0]
+          })
+        })
+  }
+  
   const postPlant = newPlant => {
     axios
       .post('https://reqres.in/api/users', newPlant)
@@ -47,16 +72,14 @@ export default function NewPlantForm(Props) {
         setFormValues(initialFormValues);
       })
   }
-
-  const [formValues, setFormValues] = useState(initialFormValues)
-  const [dayValues, setDayValues] = useState(initialDayValues)
-
   const onChange = evt => {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === 'checkbox' ? checked : value;
+    validate(name, valueToUse);
     setFormValues({...formValues, [name]: valueToUse})
     
   }
+
   const onChangeDays = evt => {
     const { name, value, type, checked } = evt.target;
     const valueToUse = type === 'checkbox' ? checked : value;
@@ -64,9 +87,8 @@ export default function NewPlantForm(Props) {
     
   }
 
-
   const onSubmit = evt => {
-    evt.preventDefault()
+    evt.preventDefault();
     const newPlant ={
       nickname: formValues.nickname.trim(),
       image: formValues.image.trim(),
@@ -77,9 +99,17 @@ export default function NewPlantForm(Props) {
       careInstructions: formValues.careInstructions.trim(),
       days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString()
     }
-    console.log(newPlant);
+    // console.log(newPlant);
     postPlant(newPlant);
   }
+
+  useEffect(() => {
+    schema.isValid(formValues)
+      .then(valid => {
+        // console.log(valid);
+        setDisabled(!valid);
+      })
+  },[formValues])
 
   const dayConditional = () => {
     if (formValues.frequency === 'monthly' || formValues.frequency === 'biweekly'|| formValues.frequency === 'weekly'){
@@ -156,19 +186,13 @@ export default function NewPlantForm(Props) {
     // else {setFormValues({...formValues, [arr]: false})}
   }
 
-  // useEffect(()=> {
-  //   if (formValues.frequency === 'monthly' || formValues.frequency === 'biweekly'|| formValues.frequency === 'weekly'){
-  //     return dayConditional()
-  //   } else {
-      
-  //   }
-  // },[formValues.frequency])
 
   return(
     <form onSubmit={onSubmit}>
       <h2>Add {formValues.nickname !== '' ? `${formValues.nickname}` : 'Your New Plant'} {formValues.species !== '' ? `the ${formValues.species}! 🎉` : ''}</h2>
       <label>
         <h3>Plant Name</h3>
+        <div className='errors'>{formErrors.nickname}</div>
         <input
           name='nickname'
           placeholder='Give me a name!🌱'
@@ -194,6 +218,7 @@ export default function NewPlantForm(Props) {
       <br/>
       <label>
         <h3>Plant Species</h3>
+        <div className='errors'>{formErrors.species}</div>
         <input
           name='species'
           type='text'
@@ -225,6 +250,7 @@ export default function NewPlantForm(Props) {
       <div class='wateringSchedule'>
         <h3>Watering Schedule</h3>
         <h5>Am I watered Daily, Weekly, Biweekly, or Monthly?</h5>
+        <div className='errors'>{formErrors.frequency}</div>
         <label>
           Daily
           <input
@@ -279,7 +305,7 @@ export default function NewPlantForm(Props) {
         />
       </label>
       <br/>
-      <button>Submit</button>
+      <button disabled={disabled}>Submit</button>
     </form>
   )
 }

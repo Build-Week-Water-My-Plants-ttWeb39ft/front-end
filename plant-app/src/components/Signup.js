@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./signupStyle.css";
 import * as yup from "yup";
+import { axiosWithAuth } from "./axiosWithAuth";
+import history from "./history";
 
 function Signup() {
   const [form, setForm] = useState({
@@ -13,6 +15,7 @@ function Signup() {
     password: "",
     terms: false,
   });
+  //
   const [disabled, setDisabled] = useState(true);
   const [errors, setErrors] = useState({
     username: "",
@@ -74,9 +77,10 @@ function Signup() {
       password: form.password.trim(),
       terms: form.terms,
     };
-    axios
+    axiosWithAuth()
       .post("https://reqres.in/api/users", newUser)
       .then((res) => {
+        history.push("/Login");
         setForm({
           //Doesn't clear form but it needs to
           username: "",
@@ -94,101 +98,107 @@ function Signup() {
   };
 
   return (
-    <div className="background-color">
-      <h1>Sign up!</h1>
-      <div className="signup">
-        <form onSubmit={submit}>
-          <label>
-            Username{" "}
-            <input
-              className="form-control"
-              onChange={change}
-              name="username"
-              type="text"
-              placeholder="Your Username"
-            />
-            <div style={{ color: "red" }}>{errors.username}</div>
-          </label>
-          <br></br>
-          <label>
-            Your First Name{" "}
-            <input
-              className="form-control"
-              onChange={change}
-              name="firstName"
-              type="text"
-              placeholder="Your First Name"
-            />
-          </label>
-          <div style={{ color: "red" }}>{errors.firstName}</div>
-          <br></br>
-          <label>
-            Your Last Name{" "}
-            <input
-              className="form-control"
-              onChange={change}
-              name="lastName"
-              type="text"
-              placeholder="Your Last Name"
-            />
-          </label>
-          <div style={{ color: "red" }}>{errors.lastName}</div>
-          <br></br>
-          <label>
-            Your Email{" "}
-            <input
-              className="form-control"
-              onChange={change}
-              name="email"
-              type="email"
-              placeholder="Your Email"
-            />
-          </label>
-          <div style={{ color: "red" }}>{errors.email}</div>
-          <br></br>
-          <label>
-            Your Phone Number{" "}
-            <input
-              className="form-control"
-              onChange={change}
-              name="phone"
-              type="text"
-              placeholder="Your Phone number"
-            />
-          </label>
-          <div style={{ color: "red" }}>{errors.phone}</div>
-          <br></br>
-          <label>
-            Password{" "}
-            <input
-              className="form-control"
-              onChange={change}
-              name="password"
-              type="password"
-              placeholder="Password"
-            />
-          </label>
+    <>
+      {/* Header */}
+      <header>
+        <h1>Cool Plant App</h1>
+      </header>
+      <div className="background-color">
+        <div className="signup">
+          <form className="signupForm" onSubmit={submit}>
+            <label>
+              Username{" "}
+              <input
+                className="form-control"
+                onChange={change}
+                name="username"
+                type="text"
+                placeholder="Your Username"
+              />
+              <div style={{ color: "red" }}>{errors.username}</div>
+            </label>
+            <br></br>
+            <label>
+              Your First Name{" "}
+              <input
+                className="form-control"
+                onChange={change}
+                name="firstName"
+                type="text"
+                placeholder="Your First Name"
+              />
+            </label>
+            <div style={{ color: "red" }}>{errors.firstName}</div>
+            <br></br>
+            <label>
+              Your Last Name{" "}
+              <input
+                className="form-control"
+                onChange={change}
+                name="lastName"
+                type="text"
+                placeholder="Your Last Name"
+              />
+            </label>
+            <div style={{ color: "red" }}>{errors.lastName}</div>
+            <br></br>
+            <label>
+              Your Email{" "}
+              <input
+                className="form-control"
+                onChange={change}
+                name="email"
+                type="email"
+                placeholder="Your Email"
+              />
+            </label>
+            <div style={{ color: "red" }}>{errors.email}</div>
+            <br></br>
+            <label>
+              Your Phone Number{" "}
+              <input
+                className="form-control"
+                onChange={change}
+                name="phone"
+                type="text"
+                placeholder="Your Phone number"
+              />
+            </label>
+            <div style={{ color: "red" }}>{errors.phone}</div>
+            <br></br>
+            <label>
+              Password{" "}
+              <input
+                className="form-control"
+                onChange={change}
+                name="password"
+                type="password"
+                placeholder="Password"
+              />
+            </label>
 
-          <div style={{ color: "red" }}>{errors.password}</div>
-          <br></br>
+            <div style={{ color: "red" }}>{errors.password}</div>
+            <br></br>
 
-          <label>
-            Terms and Conditions
-            <input
-              className="form-control"
-              onChange={change}
-              name="terms"
-              type="checkbox"
-            />
-          </label>
-          <div style={{ color: "red" }}>{errors.terms}</div>
-          <br></br>
-          <button className="form-control" disabled={disabled} type="submit">
-            Submit
-          </button>
-        </form>
+            <label>
+              Terms and Conditions
+              <input
+                className="form-control"
+                onChange={change}
+                name="terms"
+                type="checkbox"
+              />
+            </label>
+            <div style={{ color: "red" }}>{errors.terms}</div>
+            <br></br>
+
+            <button className="form-control" disabled={disabled} type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

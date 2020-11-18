@@ -11,6 +11,7 @@ export default function NewPlantForm(Props) {
 //Monthly, bi-weekly, weeekly, daily
 //what days in  a string
 
+//required Name, species, frequency,
 
   const initialFormValues = {
     nickname: '',
@@ -76,6 +77,7 @@ export default function NewPlantForm(Props) {
       careInstructions: formValues.careInstructions.trim(),
       days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString()
     }
+    console.log(newPlant);
     postPlant(newPlant);
   }
 

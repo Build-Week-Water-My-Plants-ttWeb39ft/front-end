@@ -5,7 +5,6 @@ body {
   background-color: wheat;
 }
 .signup {
-  margin-top: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,12 +15,6 @@ body {
   border-radius: 10%;
   padding: 5%;
 }
-.signupForm {
-  padding: 4%;
-  width: 50%;
-  margin: 0;
-}
-
 .form-control {
   border: 2px solid #2e6559;
   border-radius: 4px;

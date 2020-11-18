@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import * as yup from "yup";
 import schema from "./validation/LoginFormSchema.js";
+import "./Login.css"
+
+// Styled Components Start //
+
+
+
+// Styled Components End //
 
 function Login() {
 
@@ -71,59 +78,52 @@ function Login() {
         <>
             {/* Header */}        
             <header>
-                <nav>
-                    <a href="">Home</a>
-                    <a href="">About</a>
-                    <a href="">Reviews</a>
-                    <a href="">Contact</a>
-                </nav>
+                <h1>Cool Plant App</h1>
             </header>
 
-            {/* Form */}
+            {/* Form with Inputs */}
             <form onSubmit={onSubmit}>
-                <label>
-                    <h1>Welcome Back! <br/>Your Plants Miss You...</h1>           
-                    <h3>Username: </h3>
-                </label>
-                <input 
-                    id="username"
-                    type="text"
-                    name="username"
-                    value={loginInfo.username}
-                    placeholder="Your Username"
-                    onChange={onChange}
-                />
-                <br/>
-                <label>       
-                    <h3>Password: </h3>
-                </label>
-                <input
-                    onChange={onChange}
-                    name="password"
-                    value={loginInfo.password}
-                    type="text"
-                    password="password"
-                    placeholder="Your Password"
-                />
+                <h2>LOGIN</h2>
+                <div className="fieldsContainer">
+                    <label>
+                        <h3>Username: </h3>
+                    </label>
+                    <input 
+                        id="username"
+                        type="text"
+                        name="username"
+                        value={loginInfo.username}
+                        placeholder="Your Username"
+                        onChange={onChange}
+                    />
+                    <br/>
+                    <label>       
+                        <h3>Password: </h3>
+                    </label>
+                    <input
+                        onChange={onChange}
+                        name="password"
+                        value={loginInfo.password}
+                        type="text"
+                        password="password"
+                        placeholder="Your Password"
+                    />
+                </div>
                 <br/>                
                 <button disabled={disabled}>Login</button>
+                <br/> 
+
+                {/* New User Button */}
+                <button className="newAccountBtn" href="#">Create New Account</button>
             </form>
 
             {/* Error Messages */}
             <p>{error.username}</p>
             <p>{error.password}</p>
 
-            {/* New User Link */}
-            <a href="">New User? Sign Up Here!</a>
-
             {/* Footer */}
             <footer>
-                <nav>
-                    <a href="">Home</a>
-                    <a href="">About</a>
-                    <a href="">Reviews</a>
-                    <a href="">Contact</a>
-                </nav>
+                <p>Cool Plant App &#169; 2020</p>
             </footer>
         </>
     )

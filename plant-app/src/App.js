@@ -11,6 +11,7 @@ import { ProtectedPage } from "./components/ProtectedPage";
 function App() {
   return (
 
+
     <Router>
       <div className="App">
         <Switch>
@@ -21,6 +22,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+
 
   );
 }

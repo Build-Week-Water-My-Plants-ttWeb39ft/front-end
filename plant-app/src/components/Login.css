@@ -1,0 +1,60 @@
+body {
+    background-image: url("../images/kaufmann-mercantile-a7Woj8W6J0s-unsplash.jpg");
+    background-position: center;
+    background-color: #330F0A;
+    background-size: cover;
+    position: relative;
+}
+
+header {
+    background-color: #330F0A;
+    padding: 2%;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #fff;
+}
+
+h2 {
+    padding: 1% 0;
+}
+
+h3 {
+    color: #EFDD8D;
+}
+
+form {
+    background-color: #394f49e5;
+    color: #fff;
+    padding: 3% 0;
+    margin: 10% 30%;
+    border-radius: 10px;
+}
+
+input {
+    padding: 1%;
+    border-radius: 10px;
+    width: 60%;
+    height: 50%;
+}
+
+button {
+    margin-top: 2%;
+    padding: 10px 50px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #65743A;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 2%;
+    width: 15rem;
+}
+
+button.newAccountBtn {
+    background-color: #330F0A;
+}
+
+footer {
+    color: #fff;
+}

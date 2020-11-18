@@ -3,8 +3,15 @@ import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import schema from "./validation/LoginFormSchema.js";
 import "./Login.css"
+import styled from "styled-components";
+import { Spring } from "react-spring/renderprops";
 
 // Styled Components Start //
+
+const StyledForm = styled.form`
+    margin: 5% 20%;
+`
+
 
 
 
@@ -82,10 +89,16 @@ function Login() {
             </header>
 
             {/* Form with Inputs */}
-            <form onSubmit={onSubmit}>
-                <h2>LOGIN</h2>
+            <Spring
+                    from={{ opacity: 0, marginTop: - 500 }}
+                    to={{ opacity: 1, marginTop: 0 }}
+                >
+                    {props => (
+            <StyledForm style={props} onSubmit={onSubmit}>
+
                 <div className="fieldsContainer">
                     <label>
+                        <h2>LOGIN</h2>
                         <h3>Username: </h3>
                     </label>
                     <input 
@@ -104,18 +117,20 @@ function Login() {
                         onChange={onChange}
                         name="password"
                         value={loginInfo.password}
-                        type="text"
+                        type="password"
                         password="password"
                         placeholder="Your Password"
                     />
                 </div>
                 <br/>                
-                <button disabled={disabled}>Login</button>
+                <button className="loginBtn" disabled={disabled}>Login</button>
                 <br/> 
 
                 {/* New User Button */}
                 <button className="newAccountBtn" href="#">Create New Account</button>
-            </form>
+            </StyledForm>
+            )}
+            </Spring>
 
             {/* Error Messages */}
             <p>{error.username}</p>
@@ -123,7 +138,7 @@ function Login() {
 
             {/* Footer */}
             <footer>
-                <p>Cool Plant App &#169; 2020</p>
+                <p className="footerFontColor">Cool Plant App &#169; 2020</p>
             </footer>
         </>
     )

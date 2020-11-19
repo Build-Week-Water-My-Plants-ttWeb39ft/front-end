@@ -4,6 +4,7 @@ import "./signupStyle.css";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "./axiosWithAuth";
+import { Spring } from "react-spring/renderprops";
 import history from "./history";
 
 function Signup() {
@@ -106,7 +107,12 @@ function Signup() {
       </header>
 
       <div className="background-color">
-        <div className="signup">
+        <Spring
+              from={{ opacity: 0, marginTop: -500 }}
+              to={{ opacity: 1, marginTop: 0 }}
+          >
+              {(props) => (
+        <div style={props} className="signup">
           <form className="signupForm" onSubmit={submit}>
             <h2>
               <u>Signup</u>
@@ -211,6 +217,8 @@ function Signup() {
             </Link>
           </form>
         </div>
+        )}
+        </Spring>
       </div>
       {/* Footer */}
       <footer>

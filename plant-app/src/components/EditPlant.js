@@ -51,7 +51,7 @@ export default function EditPlant(props) {
 
   return (
     <div>
-      <PlantManager initialFormValues={initialFormValues} initialDayValues={daysToUse()} mailPlant={putPlant} />
+      <PlantManager initialFormValues={initialFormValues} initialDayValues={daysToUse()} mailPlant={putPlant} mailType='put' />
     </div>
   )
 }

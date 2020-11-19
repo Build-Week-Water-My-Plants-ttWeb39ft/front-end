@@ -4,20 +4,21 @@ import PlantManager from './PlantFormComponents/PlantManager';
 import axios from 'axios';
 
 
-const props = {
-  "nickname": "test plant",
-  "species": "Unknown",
-  "frequency": "biweekly",
-  "days": "tuesday,thursday,saturday,sunday",
-  "image": "image url goes here",
-  "datePlanted": "2020-11-17",
-  "careInstructions": "Place in sunlight",
-  "user": "3",
-  "description": "",
-  }
+/**** Tested functionality by removing 'props' from EditPlant(props), and uncommenting below  ****/
+// const props = {
+//   "nickname": "test plant",
+//   "species": "Unknown",
+//   "frequency": "biweekly",
+//   "days": "tuesday,thursday,saturday,sunday",
+//   "image": "image url goes here",
+//   "datePlanted": "2020-11-17",
+//   "careInstructions": "Place in sunlight",
+//   "user": "3",
+//   "description": "",
+//   }
 
 
-export default function EditPlant() {
+export default function EditPlant(props) {
   const initialFormValues = {
     nickname: props.nickname,
     image: props.image,

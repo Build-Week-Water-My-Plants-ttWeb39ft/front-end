@@ -80,7 +80,7 @@ function Signup() {
       terms: form.terms,
     };
     axiosWithAuth()
-      .post("https://reqres.in/api/users", newUser)
+      .post("users", newUser)
       .then((res) => {
         history.push("/Login");
         setForm({

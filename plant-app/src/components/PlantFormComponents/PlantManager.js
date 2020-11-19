@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import * as yup from 'yup'
-import schema from './validation/newPlantSchema'
-import axios from 'axios'
-import PlantForm from './PlantFormComponents/PlantForm'
-import { initialFormValues, initialFormErrors, initialDayValues } from './PlantFormComponents/initialValues'
+import schema from '../validation/newPlantSchema'
+import PlantForm from './PlantForm'
+import { initialFormErrors } from './initialValues'
 
 
-export default function AddPlant() {
+export default function PlantManager(props) {
+  const { mailPlant, initialDayValues, initialFormValues } = props;
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [dayValues, setDayValues] = useState(initialDayValues);
@@ -38,20 +38,7 @@ export default function AddPlant() {
 
   const dayReset = () => setDayValues(initialDayValues);
 
-  const postPlant = newPlant => {
-    axios
-      .post('https://reqres.in/api/users', newPlant)
-      .then(res => {
-        console.log('Success:',res)
-      })
-      .catch(err => {
-        console.log('Error:',err)
-      })
-      .finally(()=>{
-        setDayValues(initialDayValues);
-        setFormValues(initialFormValues);
-      })
-  }
+  
 
   const submit = () => {
     const plantData ={
@@ -64,8 +51,9 @@ export default function AddPlant() {
       careInstructions: formValues.careInstructions.trim(),
       days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString()
     }
-    // console.log(newPlant);
-    postPlant(plantData);
+    mailPlant(plantData);
+    setDayValues(initialDayValues);
+    setFormValues(initialFormValues);
   }
 
 

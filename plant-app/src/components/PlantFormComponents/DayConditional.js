@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function dayConditional(props) {
+export default function DayConditional(props) {
 
   const { formValues, dayValues, dayChange } = props;
 
@@ -79,5 +79,5 @@ export default function dayConditional(props) {
       </label>
       </div>
     )
-  } 
+  } else {return ''}
 }

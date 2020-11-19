@@ -8,25 +8,25 @@ export const ProtectedPage = () => {
 
   useEffect(() => {
     axiosWithAuth()
-    .get("/plants")
+    .get("user")
     .then(req=>{
-      setPlants(req.data)
+      setPlants(req.data.plants)
     }).catch(err=>{
       console.log(err);
     })
   },[]);
 
-  const deletePlant = plant => {
-    axiosWithAuth()
-    .delete(`/plants/${plant.id}`)
-    .then(req => {
-      setPlants(req.data);
-      window.location.reload();
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
+  // const deletePlant = plant => {
+  //   axiosWithAuth()
+  //   .delete(`plants/${plant.id}`)
+  //   .then(req => {
+  //     setPlants(req.data);
+  //     window.location.reload();
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
+  // }
 
   return(
     <div className="plants-container">
@@ -52,10 +52,10 @@ export const ProtectedPage = () => {
           <p>{plant.frequency}</p>
           <p>{plant.days}</p>
           <p>{plant.careInstructions}</p>
-          <button onClick={e => {
+          {/* <button onClick={e => {
             e.stopPropagation();
             deletePlant(plant);
-          }}>Delete</button>
+          }}>Delete</button> */}
           </div>
 
         ))}

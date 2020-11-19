@@ -3,34 +3,10 @@ import * as yup from 'yup'
 import schema from './validation/newPlantSchema'
 import axios from 'axios'
 import PlantForm from './PlantFormComponents/PlantForm'
+import { initialFormValues, initialFormErrors, initialDayValues } from './PlantFormComponents/initialValues'
 
-const initialFormValues = {
-  nickname: '',
-  image:'',
-  species:'',
-  description:'',
-  datePlanted:'',
-  frequency:'daily',
-  careInstructions:'',
-}
 
-const initialDayValues = {
-  monday: false,
-  tuesday: false,
-  wednesday: false,
-  thursday: false,
-  friday: false,
-  saturday: false,
-  sunday: false,
-}
-
-const initialFormErrors = {
-  nickname: '',
-  species:'',
-  frequency:'',
-}
-
-export default function AddPlant(Props) {
+export default function AddPlant() {
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [dayValues, setDayValues] = useState(initialDayValues);
@@ -76,8 +52,9 @@ export default function AddPlant(Props) {
         setFormValues(initialFormValues);
       })
   }
+
   const submit = () => {
-    const newPlant ={
+    const plantData ={
       nickname: formValues.nickname.trim(),
       image: formValues.image.trim(),
       species: formValues.species.trim(),
@@ -88,7 +65,7 @@ export default function AddPlant(Props) {
       days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString()
     }
     // console.log(newPlant);
-    postPlant(newPlant);
+    postPlant(plantData);
   }
 
 

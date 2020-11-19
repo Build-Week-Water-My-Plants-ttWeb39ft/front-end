@@ -8,9 +8,9 @@ export const ProtectedPage = () => {
 
   useEffect(() => {
     axiosWithAuth()
-    .get("plants")
+    .get("user")
     .then(req=>{
-      setPlants(req.data)
+      setPlants(req.data.plants)
     }).catch(err=>{
       console.log(err);
     })

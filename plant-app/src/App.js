@@ -7,6 +7,7 @@ import Home from "./components/Home.js";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ProtectedPage } from "./components/ProtectedPage";
 import history from "./components/history";
+import EditPlant from "./components/EditPlant";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route exact path="/Signup" component={Signup} />
-          <Route exact path="/Login" component={Login}></Route>
+          <Route exact path="/Login" component={Login} />
           <Route path="/Add-plant" component={AddPlant} />
+          <Route path="/Edit-plant" component={EditPlant}/>
           <ProtectedRoute exact path="/My-plants" component={ProtectedPage} />
         </Switch>
       </div>

@@ -118,7 +118,7 @@ export default function PlantForm(props) {
                 name='frequency'
                 type='radio'
                 value='monthly'
-                checked={formValues.frequency === 'Monthly'}
+                checked={formValues.frequency === 'monthly'}
                 onChange={onChange} 
               />
             </label>

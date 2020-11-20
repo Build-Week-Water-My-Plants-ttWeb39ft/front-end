@@ -1,14 +1,15 @@
 import React from 'react';
 import PlantManager from './PlantFormComponents/PlantManager';
-import axios from 'axios';
 import { initialFormValues, initialDayValues } from './PlantFormComponents/initialValues'
+import { axiosWithAuth } from './axiosWithAuth';
 
 export default function addPlant() {
 
   const postPlant = newPlant => {
-    axios
-      .post('https://reqres.in/api/users', newPlant)
+    axiosWithAuth()
+      .post('plants/plants', newPlant)
       .then(res => {
+        console.log(newPlant)
         console.log('Success:',res)
       })
       .catch(err => {

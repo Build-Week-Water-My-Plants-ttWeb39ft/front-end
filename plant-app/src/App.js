@@ -18,7 +18,7 @@ function App() {
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Login" component={Login} />
           <Route path="/Add-plant" component={AddPlant} />
-          <Route path="/Edit-plant" component={EditPlant}/>
+          <Route path="/Edit-plant:id" component={EditPlant}/>
           <ProtectedRoute exact path="/My-plants" component={ProtectedPage} />
         </Switch>
       </div>

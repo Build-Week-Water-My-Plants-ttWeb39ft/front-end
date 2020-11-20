@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-//import axios from "axios";
+import axios from "axios";
 import "./signupStyle.css";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import { axiosWithAuth } from "./axiosWithAuth";
+// import { axiosWithAuth } from "./axiosWithAuth";
 import { Spring } from "react-spring/renderprops";
 import history from "./history";
 
@@ -79,9 +79,11 @@ function Signup() {
       password: form.password.trim(),
       terms: form.terms,
     };
-    axiosWithAuth()
-      .post("users", newUser)
+    axios
+      .post("https://water-my-plants-tt39.herokuapp.com/createnewuser", newUser)
       .then((res) => {
+        localStorage.setItem("token", res.data.access_token)
+        localStorage.setItem("user:id", res.data.userid)
         history.push("/Login");
         setForm({
           //Doesn't clear form but it needs to
@@ -96,6 +98,7 @@ function Signup() {
       })
       .catch((err) => {
         debugger;
+        console.log(err)
       });
   };
 

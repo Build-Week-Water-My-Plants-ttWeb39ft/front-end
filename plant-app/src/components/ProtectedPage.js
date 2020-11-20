@@ -1,31 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from './axiosWithAuth';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import "./protected.css"
 
 export const ProtectedPage = () => {
 
-  const [plants, setPlants] = useState([])
+  const {push} = useHistory();
 
-  useEffect(() => {
+  const [plants, setPlants] = useState([]);
+
+  const getUser = () => {
     axiosWithAuth()
-    .get("user")
+    .get('users/getuserinfo')
+    .then(res => {
+      console.log(res.data)
+      localStorage.setItem('user:id', res.data.userid)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
+  const id = localStorage.getItem("user:id")
+
+  const getPlants = () => {
+    axiosWithAuth()
+    .get(`users/user/${id}`)
     .then(req=>{
       setPlants(req.data.plants)
     }).catch(err=>{
       console.log(err);
     })
+  }
+
+  const deletePlant = plant => {
+    axiosWithAuth()
+    .delete(`plants/plant/${plant.plantid}`)
+    .then(req => {
+      window.location.reload();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  useEffect(() => {
+    getUser();
+    getPlants();
   },[]);
 
-  // const deletePlant = plant => {
-  //   axiosWithAuth()
-  //   .delete(`plants/${plant.id}`)
-  //   .then(req => {
-  //     setPlants(req.data);
-  //     window.location.reload();
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
+  // const routeToItem = (e, plant) => {
+  //   e.preventDefault();
+  //   history.push(`/Edit-plant/${plant.id}`)
   // }
 
   return(
@@ -45,17 +70,20 @@ export const ProtectedPage = () => {
 
           <div className="plant">
           <h2>{plant.nickname}</h2>
-          <img alt={plant.description}>{plant.image}</img>
-          <p>{plant.species}</p>
-          <p>{plant.description}</p>
-          <p>{plant.datePlanted}</p>
-          <p>{plant.frequency}</p>
-          <p>{plant.days}</p>
-          <p>{plant.careInstructions}</p>
-          {/* <button onClick={e => {
+          <img src={plant.image} />
+          <p>Species: {plant.species}</p>
+          <p>Description: {plant.description}</p>
+          <p>Date Planted: {plant.datePlanted}</p>
+          <p>Water Frequency: {plant.frequency}</p>
+          <p>Days: {plant.days}</p>
+          <p>Care Instructions: {plant.careInstructions}</p>
+          <button onClick={e => {
             e.stopPropagation();
             deletePlant(plant);
-          }}>Delete</button> */}
+          }}>Delete</button>
+          <button onClick={() => {
+            push(`/Edit-plant/${plant.plantid}`);
+          }}>Edit</button>
           </div>
 
         ))}

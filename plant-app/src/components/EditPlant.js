@@ -20,39 +20,43 @@ import { axiosWithAuth } from './axiosWithAuth';
 //   }
 
 
-export default function EditPlant(props) {
-
-  const [plant, setPlant] = useState([]);
-
-  // const initialFormValues = {
-  //   nickname: props.nickname,
-  //   image: props.image,
-  //   species: props.species,
-  //   description: props.description,
-  //   datePlanted: props.datePlanted,
-  //   frequency: props.frequency,
-  //   careInstructions: props.careInstructions,
-  // }
-  
-  const { id } = useParams();
-  const { push } = useHistory();
-
-  const getPlant = () => {
-    axiosWithAuth()
-      .get(`plants/plant/${id}`)
-      .then(res => {
-        setPlant(res.data)
-        console.log(res.data)
-        console.log('Success:',res)
-      })
-      .catch(err => {
-        console.log('Error:',err)
-      })
+  const initialFormValues = {
+    nickname: "",
+    image: "",
+    species: "",
+    description: "",
+    datePlanted: "",
+    frequency: "",
+    careInstructions: "",
   }
 
+
+ function EditPlant(props) {
+
+  const [plant, setPlant] = useState({});
+  const [formValues, setFormValues] = useState(initialFormValues);
+  
+  const { id } = useParams();
+  console.log(id);
+  const { push } = useHistory();
+
+  
   useEffect(() => {
+    const getPlant = () => {
+      axiosWithAuth()
+        .get(`plants/plant/${id}`)
+        .then(res => {
+          setPlant(res.data)
+          setFormValues(res.data)
+          console.log(res.data)
+          console.log('Success:',res)
+        })
+        .catch(err => {
+          console.log('Error:',err)
+        })
+    }
     getPlant();
-  },[]);
+  }, [id]);
 
 
 
@@ -84,7 +88,14 @@ export default function EditPlant(props) {
 
   return (
     <div>
-      <PlantManager initialFormValues={plant} initialDayValues={daysToUse()} mailPlant={putPlant} mailType='put' />
+      <PlantManager 
+      // initialFormValues={plant} 
+      formValues={formValues}
+      setFormValues={setFormValues}
+      initialDayValues={daysToUse()}
+      mailPlant={putPlant} mailType='put' />
     </div>
   )
 }
+
+export default EditPlant;

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PlantManager from './PlantFormComponents/PlantManager';
 import { initialFormValues, initialDayValues } from './PlantFormComponents/initialValues'
 import { axiosWithAuth } from './axiosWithAuth';
 import { useHistory } from 'react-router-dom';
 
-export default function addPlant() {
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  // const initialFormValues = {
+  //   nickname: "",
+  //   image: "",
+  //   species: "",
+  //   description: "",
+  //   datePlanted: "",
+  //   frequency: "",
+  //   careInstructions: "",
+  // }
+
+ function AddPlant() {
   const { push } = useHistory();
+  const [formValues, setFormValues] = useState(initialFormValues);
 
   const postPlant = newPlant => {
     axiosWithAuth()
@@ -23,7 +33,15 @@ export default function addPlant() {
 
   return(
     <div>
-      <PlantManager mailPlant={postPlant} initialFormValues={initialFormValues} initialDayValues={initialDayValues} mailType='post' />
+      <PlantManager 
+      mailPlant={postPlant} 
+      formValues={formValues}
+      setFormValues={setFormValues}
+      initialFormValues={initialFormValues} 
+      initialDayValues={initialDayValues} 
+      mailType='post' />
     </div>
   )
 }
+
+export default AddPlant;

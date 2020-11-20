@@ -1,71 +1,71 @@
 body {
-    background-image: url("../images/kaufmann-mercantile-a7Woj8W6J0s-unsplash.jpg");
-    background-position: center;
-    background-color: #330F0A;
-    background-size: cover;
-    position: relative;
+  background-image: url("../images/kaufmann-mercantile-a7Woj8W6J0s-unsplash.jpg");
+  background-position: center;
+  background-color: #330f0a;
+  background-size: cover;
+  position: relative;
 }
 
 header {
-    background-color: #330F0A;
-    padding: 1%;
-    margin-bottom: 5%;
+  background-color: #330f0a;
+  padding: 1%;
+  margin-bottom: 2%;
 }
 
 h1 {
-    font-size: 2rem;
-    color: #fff;
+  font-size: 2rem;
+  color: #fff;
 }
 
 h2 {
-    padding: 1% 0;
-    margin-top: 1%;
+  padding: 1% 0;
+  margin-top: 1%;
 }
 
 h3 {
-    color: #EFDD8D;
+  color: #efdd8d;
 }
 
 form {
-    background-color: #394f49e5;
-    color: #fff;
-    padding: 3% 0;
-    margin: 10% 30%;
-    border-radius: 10px;
+  background-color: #394f49e5;
+  color: #fff;
+  padding: 3% 0;
+  margin: 10% 30%;
+  border-radius: 10px;
 }
 
 input {
-    padding: 1%;
-    border-radius: 10px;
-    width: 60%;
+  padding: 1%;
+  border-radius: 10px;
+  width: 60%;
 }
 
 button.loginBtn {
-    margin-top: 2%;
-    padding: 10px 0;
-    background-color: #65743A;
-    width: 30%;
-    font-size: 0.8rem;
+  margin-top: 2%;
+  padding: 10px 0;
+  background-color: #65743a;
+  width: 30%;
+  font-size: 0.8rem;
 }
 
 button.newAccountBtn {
-    margin-top: 2%;
-    padding: 10px 10px;
-    color: #fff;
-    background-color: #330F0A;
-    margin-bottom: 2%;
-    width: 30%;
-    font-size: 0.8rem;
+  margin-top: 2%;
+  padding: 10px 10px;
+  color: #fff;
+  background-color: #330f0a;
+  margin-bottom: 2%;
+  width: 30%;
+  font-size: 0.8rem;
 }
 
 footer {
-    background-color: #EFDD8D;
-    margin: 0;
-    padding: 1%;
+  background-color: #efdd8d;
+  margin: 0;
+  padding: 1%;
 }
 
 p.footerFontColor {
-    color: #394F49;
-    font-size: 0.8rem;
-    letter-spacing: 5px;
+  color: #394f49;
+  font-size: 0.8rem;
+  letter-spacing: 5px;
 }

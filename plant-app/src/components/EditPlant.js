@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { initialDayValues } from './PlantFormComponents/initialValues';
 import PlantManager from './PlantFormComponents/PlantManager';
 import { useParams, useHistory } from 'react-router-dom';
@@ -6,7 +6,7 @@ import PlantForm from './PlantFormComponents/PlantForm';
 import { axiosWithAuth } from './axiosWithAuth';
 
 
-/**** Tested functionality by removing 'props' from EditPlant(props), and uncommenting below  ****/
+// /**** Tested functionality by removing 'props' from EditPlant(props), and uncommenting below  ****/
 // const props = {
 //   "nickname": "test plant",
 //   "species": "Unknown",
@@ -20,24 +20,16 @@ import { axiosWithAuth } from './axiosWithAuth';
 //   }
 
 
-export default function EditPlant(props) {
-  const initialFormValues = {
-    nickname: props.nickname,
-    image: props.image,
-    species: props.species,
-    description: props.description,
-    datePlanted: props.datePlanted,
-    frequency: props.frequency,
-    careInstructions: props.careInstructions,
-  }
-
+export default function EditPlant() {
   const { id } = useParams();
   const { push } = useHistory();
+  const [props, setProps] = useState()
 
   const getPlant = plant => {
     axiosWithAuth()
       .get(`plants/plant/${id}`)
       .then(res => {
+        setProps(res.data)
         console.log('Success:',res)
       })
       .catch(err => {
@@ -48,6 +40,21 @@ export default function EditPlant(props) {
   useEffect(() => {
     getPlant();
   },[]);
+
+  if (!props){
+    return <h3>LOADING...</h3>
+  }
+
+  const initialFormValues = {
+    nickname: props.nickname,
+    image: props.image,
+    species: props.species,
+    description: props.description,
+    datePlanted: props.datePlanted,
+    frequency: props.frequency,
+    careInstructions: props.careInstructions,
+  }
+
 
   const daysToUse = ()=> {
     const dayObj = {...initialDayValues}
@@ -73,7 +80,6 @@ export default function EditPlant(props) {
         console.log('Error:',err)
       })
   }
-
 
   return (
     <div>

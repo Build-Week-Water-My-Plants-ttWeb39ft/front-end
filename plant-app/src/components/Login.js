@@ -10,7 +10,9 @@ import "./Login.css";
 // Styled Components Start //
 
 const StyledForm = styled.form`
-  margin: 5% 20%;
+
+  margin: 15% 20%;
+
 `;
 
 // Styled Components End //
@@ -93,6 +95,7 @@ function Login() {
       })
       .catch((err) => {
         console.log(err);
+
       });
   };
 

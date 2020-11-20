@@ -33,7 +33,9 @@ export default function PlantForm(props) {
           </label>
           <label>
             <h3>Plant Image</h3>
-            {formValues.image !== '' ? (<div class='plantImage'><img src={formValues.image} alt='Your plant!' /> </div>) : ''}
+            {formValues.image !== '' ? (<div class='plantImage'><img
+            src={formValues.image === 'Bill' ? 'http://highfivethepodcast.com/wp-content/uploads/2016/09/1607048_10151928821933004_257352888_n.jpg' : formValues.image}
+            alt='Your plant!' /> </div>) : ''}
             <input
               name='image'
               // type='file' //For file need to research how to actually have it upload to server

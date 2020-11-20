@@ -5,6 +5,9 @@
   display:flex;
   flex-flow:column nowrap;
 }
+.plantForm img{
+  max-width: 50%;
+}
 .wateringSchedule {
   display:flex;
   flex-flow: column nowrap;  

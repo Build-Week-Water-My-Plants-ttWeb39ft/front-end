@@ -3,7 +3,9 @@ import * as yup from 'yup'
 import schema from '../validation/newPlantSchema'
 import PlantForm from './PlantForm'
 import { initialFormErrors } from './initialValues'
+import { axiosWithAuth } from '../axiosWithAuth';
 import { Spring } from "react-spring/renderprops";
+
 
 
 export default function PlantManager(props) {
@@ -39,7 +41,22 @@ export default function PlantManager(props) {
 
   const dayReset = () => setDayValues(initialDayValues);
 
-  
+  const getUser = () => {
+    axiosWithAuth()
+    .get('/users/getuserinfo')
+    .then(res => {
+      console.log(res.data)
+      localStorage.setItem('user:id', res.data.userid)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
+  useEffect(() => {
+    getUser();
+  },[]);
+
+  const id = localStorage.getItem("user:id")
 
   const submit = () => {
     const plantData ={
@@ -50,7 +67,8 @@ export default function PlantManager(props) {
       datePlanted: formValues.datePlanted,
       frequency: formValues.frequency,
       careInstructions: formValues.careInstructions.trim(),
-      days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString()
+      days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString(),
+      user: `${id}`
     }
     mailPlant(plantData);
     if (mailType === 'post'){

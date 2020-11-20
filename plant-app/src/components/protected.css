@@ -1,0 +1,12 @@
+.plant {
+  background-color: #394f49e5;
+  width: 30%;
+  margin: 2% auto;
+  padding: 2%;
+  border-radius: 50px;
+  color: white;
+}
+
+.plant button {
+  background-color: grey;
+}

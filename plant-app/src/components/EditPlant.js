@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { initialDayValues } from './PlantFormComponents/initialValues';
 import PlantManager from './PlantFormComponents/PlantManager';
-import axios from 'axios';
+import { useParams, useHistory } from 'react-router-dom';
+import PlantForm from './PlantFormComponents/PlantForm';
+import { axiosWithAuth } from './axiosWithAuth';
 
 
 /**** Tested functionality by removing 'props' from EditPlant(props), and uncommenting below  ****/
@@ -37,9 +39,12 @@ export default function EditPlant(props) {
     return dayObj
   }
 
-  const putPlant = plant => {
-    axios
-      .put('https://reqres.in/api/users2', plant)
+  const { id } = useParams();
+  const { push } = useHistory();
+
+  const getPlant = plant => {
+    axiosWithAuth()
+      .get(`plants/plant/${id}`, plant)
       .then(res => {
         console.log('Success:',res)
       })
@@ -47,7 +52,22 @@ export default function EditPlant(props) {
         console.log('Error:',err)
       })
   }
+
+  const putPlant = plant => {
+    axiosWithAuth()
+      .put(`plants/plant/${id}`, plant)
+      .then(res => {
+        console.log('Success:',res)
+        push("/My-plants")
+      })
+      .catch(err => {
+        console.log('Error:',err)
+      })
+  }
   
+  useEffect(() => {
+    getPlant();
+  },[]);
 
   return (
     <div>

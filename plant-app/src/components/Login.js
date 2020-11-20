@@ -7,7 +7,6 @@ import { Spring } from "react-spring/renderprops";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import history from "./history";
-import { axiosWithAuth } from "./axiosWithAuth.js";
 
 // Styled Components Start //
 
@@ -75,19 +74,20 @@ const StyledForm = styled.form`
 
     const onSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://water-my-plants-tt39.herokuapp.com/login', `grant_type=password&username=${loginInfo.username}&password=${loginInfo.password}`, {
+        axios
+        .post('https://water-my-plants-tt39.herokuapp.com/login', `grant_type=password&username=${loginInfo.username}&password=${loginInfo.password}`, {
         headers: {
-        // btoa is converting our client id/client secret into base64
         Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
         'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
     .then(res => {
-        console.log(res.data)
+        console.log(res)
         localStorage.setItem('token', res.data.access_token);
         history.push('/My-plants');
     })
     };
+
 
     useEffect(() => {
         schema.isValid(loginInfo).then((res) => {

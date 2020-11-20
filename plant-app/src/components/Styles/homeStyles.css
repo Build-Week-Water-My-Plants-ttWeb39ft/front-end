@@ -24,14 +24,17 @@ button {
   outline: none;
   border: 2px solid #394f49;
   border-radius: 20px;
-  color: #fff;
+  color: black;
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
   opacity: 1;
+  transition: transform 1s;
+  margin: 10px;
 }
 button:hover {
   opacity: 0.5;
+  transform: scale(1.1);
 }
 a {
   text-decoration: none;
@@ -39,4 +42,23 @@ a {
 }
 .furtherDown {
   margin-top: 50%;
+}
+.navbar {
+  width: 20%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 10;
+}
+.navbar .logo {
+  width: 60px;
+  margin: 30px 120px;
+  cursor: pointer;
+  transition: transform 1s;
+}
+
+.logo:hover {
+  transform: rotate(-10deg);
 }

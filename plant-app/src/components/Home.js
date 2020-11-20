@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../images/Plant-App-Logo_100x100.png";
 import "./Styles/homeStyles.css";
 
 function Home() {
   return (
     <>
       <div className="main">
-        <div className="logo"></div>
+        <nav className="navbar">
+          <img src={logo} className="logo" alt="logo" />
+        </nav>
+
         <div className="furtherDown">
           <h1>The Plant App</h1>
           <Link to="/Login">
@@ -18,17 +22,6 @@ function Home() {
           </Link>
         </div>
       </div>
-
-      {/* <div>
-        <h2>Real reviews</h2>
-        <p>I would use this!</p>
-      </div> */}
-      {/* Footer */}
-
-      {/* Footer here */}
-      {/* <footer>
-        <p className="footerFontColor">Cool Plant App &#169; 2020</p>
-      </footer> */}
     </>
   );
 }

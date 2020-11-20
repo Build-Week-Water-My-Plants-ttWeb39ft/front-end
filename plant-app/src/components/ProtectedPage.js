@@ -48,10 +48,6 @@ export const ProtectedPage = () => {
     getPlants();
   },[]);
 
-  // const routeToItem = (e, plant) => {
-  //   e.preventDefault();
-  //   history.push(`/Edit-plant/${plant.id}`)
-  // }
 
   return(
     <div className="plants-container">
@@ -77,10 +73,12 @@ export const ProtectedPage = () => {
           <p>Water Frequency: {plant.frequency}</p>
           <p>Days: {plant.days}</p>
           <p>Care Instructions: {plant.careInstructions}</p>
+
           <button onClick={e => {
             e.stopPropagation();
             deletePlant(plant);
           }}>Delete</button>
+
           <button onClick={() => {
             push(`/Edit-plant/${plant.plantid}`);
           }}>Edit</button>

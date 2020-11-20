@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./signupStyle.css";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 // import { axiosWithAuth } from "./axiosWithAuth";
 import { Spring } from "react-spring/renderprops";
-import history from "./history";
 
 function Signup() {
+
+  const {push} = useHistory();
+
   const [form, setForm] = useState({
     username: "",
     firstName: "",
@@ -84,7 +86,7 @@ function Signup() {
       .then((res) => {
         localStorage.setItem("token", res.data.access_token)
         localStorage.setItem("user:id", res.data.userid)
-        history.push("/Login");
+        push("/Login");
         setForm({
           //Doesn't clear form but it needs to
           username: "",

@@ -6,12 +6,11 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Home from "./components/Home.js";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ProtectedPage } from "./components/ProtectedPage";
-import history from "./components/history";
 import EditPlant from "./components/EditPlant";
 
 function App() {
   return (
-    <Router history={history}>
+    <Router>
       <div className="App">
         <Switch>
           <Route path="/" exact component={Home} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { initialDayValues } from './PlantFormComponents/initialValues';
 import PlantManager from './PlantFormComponents/PlantManager';
 import { useParams, useHistory } from 'react-router-dom';
@@ -21,23 +21,28 @@ import { axiosWithAuth } from './axiosWithAuth';
 
 
 export default function EditPlant(props) {
-  const initialFormValues = {
-    nickname: props.nickname,
-    image: props.image,
-    species: props.species,
-    description: props.description,
-    datePlanted: props.datePlanted,
-    frequency: props.frequency,
-    careInstructions: props.careInstructions,
-  }
 
+  const [plant, setPlant] = useState([]);
+
+  // const initialFormValues = {
+  //   nickname: props.nickname,
+  //   image: props.image,
+  //   species: props.species,
+  //   description: props.description,
+  //   datePlanted: props.datePlanted,
+  //   frequency: props.frequency,
+  //   careInstructions: props.careInstructions,
+  // }
+  
   const { id } = useParams();
   const { push } = useHistory();
 
-  const getPlant = plant => {
+  const getPlant = () => {
     axiosWithAuth()
       .get(`plants/plant/${id}`)
       .then(res => {
+        setPlant(res.data)
+        console.log(res.data)
         console.log('Success:',res)
       })
       .catch(err => {
@@ -48,6 +53,8 @@ export default function EditPlant(props) {
   useEffect(() => {
     getPlant();
   },[]);
+
+
 
   const daysToUse = ()=> {
     const dayObj = {...initialDayValues}
@@ -77,7 +84,7 @@ export default function EditPlant(props) {
 
   return (
     <div>
-      <PlantManager initialFormValues={initialFormValues} initialDayValues={daysToUse()} mailPlant={putPlant} mailType='put' />
+      <PlantManager initialFormValues={plant} initialDayValues={daysToUse()} mailPlant={putPlant} mailType='put' />
     </div>
   )
 }

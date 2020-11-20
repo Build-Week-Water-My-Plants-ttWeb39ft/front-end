@@ -88,6 +88,9 @@ const StyledForm = styled.form`
         localStorage.setItem('token', res.data.access_token);
         push('/My-plants');
     })
+    .catch(err => {
+        console.log(err)
+    })
     };
 
 

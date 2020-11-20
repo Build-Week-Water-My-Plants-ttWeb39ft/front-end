@@ -80,9 +80,11 @@ function Signup() {
       terms: form.terms,
     };
     axiosWithAuth()
-      .post("users", newUser)
+      .post("users", newUser) //May need to add the auth register here
       .then((res) => {
         history.push("/Login");
+        //And set up local storage here(localStorage.setItem("token", res.data.token);
+        //localStorage.setItem("user_id", res.data.data.id);)
         setForm({
           //Doesn't clear form but it needs to
           username: "",

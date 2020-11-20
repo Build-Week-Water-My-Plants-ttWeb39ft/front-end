@@ -19,7 +19,7 @@ export default function addPlant() {
 
   return(
     <div>
-      <PlantManager mailPlant={postPlant} initialFormValues={initialFormValues} initialDayValues={initialDayValues} />
+      <PlantManager mailPlant={postPlant} initialFormValues={initialFormValues} initialDayValues={initialDayValues} mailType='post' />
     </div>
   )
 }

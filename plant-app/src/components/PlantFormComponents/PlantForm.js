@@ -18,7 +18,7 @@ export default function PlantForm(props) {
 
 
   return(
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className='plantForm'>
           <h2>Add {formValues.nickname !== '' ? `${formValues.nickname}` : 'Your New Plant'} {formValues.species !== '' ? `the ${formValues.species}! 🎉` : ''}</h2>
           <label>
             <h3>Plant Name</h3>
@@ -31,10 +31,11 @@ export default function PlantForm(props) {
               onChange={onChange}
             />
           </label>
-          <br/>
           <label>
             <h3>Plant Image</h3>
-            {formValues.image !== '' ? (<div class='plantImage'><img src={formValues.image} alt='Your plant!' /> <br/></div>) : ''}
+            {formValues.image !== '' ? (<div class='plantImage'><img
+            src={formValues.image === 'Bill' ? 'http://highfivethepodcast.com/wp-content/uploads/2016/09/1607048_10151928821933004_257352888_n.jpg' : formValues.image}
+            alt='Your plant!' /> </div>) : ''}
             <input
               name='image'
               // type='file' //For file need to research how to actually have it upload to server
@@ -45,7 +46,6 @@ export default function PlantForm(props) {
               onChange={onChange} 
             />
           </label>
-          <br/>
           <label>
             <h3>Plant Species</h3>
             <div className='errors'>{formErrors.species}</div>
@@ -57,7 +57,6 @@ export default function PlantForm(props) {
               onChange={onChange} 
               />
           </label>
-          <br/>
           <label>
             <h3>Plant Description</h3>
             <input

@@ -1,4 +1,22 @@
 .App {
   text-align: center;
 }
+.plantForm {
+  display:flex;
+  flex-flow:column nowrap;
+}
+.plantForm img{
+  max-width: 50%;
+}
+.wateringSchedule {
+  display:flex;
+  flex-flow: column nowrap;  
+}
 
+.wateringSchedule input {
+  width: 5%;
+}
+.dayConditional {
+  display: flex;
+  flex-flow: column nowrap;
+}

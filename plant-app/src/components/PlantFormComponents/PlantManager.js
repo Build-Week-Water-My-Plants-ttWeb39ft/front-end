@@ -4,10 +4,12 @@ import schema from '../validation/newPlantSchema'
 import PlantForm from './PlantForm'
 import { initialFormErrors } from './initialValues'
 import { axiosWithAuth } from '../axiosWithAuth';
+import { Spring } from "react-spring/renderprops";
+
 
 
 export default function PlantManager(props) {
-  const { mailPlant, initialDayValues, initialFormValues } = props;
+  const { mailPlant, initialDayValues, initialFormValues, mailType } = props;
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [dayValues, setDayValues] = useState(initialDayValues);
@@ -69,8 +71,10 @@ export default function PlantManager(props) {
       user: `${id}`
     }
     mailPlant(plantData);
-    setDayValues(initialDayValues);
-    setFormValues(initialFormValues);
+    if (mailType === 'post'){
+      setDayValues(initialDayValues);
+      setFormValues(initialFormValues);
+    }
   }
 
 
@@ -85,16 +89,25 @@ export default function PlantManager(props) {
 
   return(
     <div>
-      <PlantForm 
-        formValues={formValues}
-        dayValues={dayValues} 
-        formErrors={formErrors} 
-        formValueChange={formValueChange} 
-        disabled={disabled} 
-        submit={submit}
-        dayChange={dayChange}
-        dayReset={dayReset}
-        />
+      <Spring
+        from={{ opacity: 0, marginTop: -500 }}
+        to={{ opacity: 1, marginTop: 0 }}
+      >
+        {(props) => (
+          <div style={props}>
+            <PlantForm 
+              formValues={formValues}
+              dayValues={dayValues} 
+              formErrors={formErrors} 
+              formValueChange={formValueChange} 
+              disabled={disabled} 
+              submit={submit}
+              dayChange={dayChange}
+              dayReset={dayReset}
+            />
+          </div>
+        )}
+      </Spring>
     </div>
     
   )

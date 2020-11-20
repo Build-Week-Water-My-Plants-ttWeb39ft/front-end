@@ -6,19 +6,18 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Home from "./components/Home.js";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ProtectedPage } from "./components/ProtectedPage";
-import history from "./components/history";
 import EditPlant from "./components/EditPlant";
 
 function App() {
   return (
-    <Router history={history}>
+    <Router>
       <div className="App">
         <Switch>
           <Route path="/" exact component={Home} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Login" component={Login} />
-          <Route path="/Add-plant" component={AddPlant} />
-          <Route path="/Edit-plant:id" render={props=>(
+          <Route exact path="/Add-plant" component={AddPlant} />
+          <Route path="/Edit-plant/:id" render={props=>(
             <EditPlant {...props} /> )}/>
           <ProtectedRoute exact path="/My-plants" component={ProtectedPage} />
         </Switch>

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./signupStyle.css";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 // import { axiosWithAuth } from "./axiosWithAuth";
 import { Spring } from "react-spring/renderprops";
-import history from "./history";
 
 function Signup() {
+
+  const {push} = useHistory();
+
   const [form, setForm] = useState({
     username: "",
     firstName: "",
@@ -80,11 +82,16 @@ function Signup() {
       terms: form.terms,
     };
     axios
-      .post("https://water-my-plants-tt39.herokuapp.com/createnewuser", newUser)
+      .post("https://water-my-plants-tt39.herokuapp.com/createnewuser", `grant_type=password&email&username=${newUser.username}&password=${newUser.password}&email=${newUser.email}`, {
+        headers: {
+        Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
       .then((res) => {
         localStorage.setItem("token", res.data.access_token)
         localStorage.setItem("user:id", res.data.userid)
-        history.push("/Login");
+        push("/Login");
         setForm({
           //Doesn't clear form but it needs to
           username: "",

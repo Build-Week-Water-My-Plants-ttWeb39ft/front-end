@@ -13,6 +13,7 @@ export default function addPlant() {
         console.log('Success:',res)
       })
       .catch(err => {
+        console.log(newPlant)
         console.log('Error:',err)
       })
   }

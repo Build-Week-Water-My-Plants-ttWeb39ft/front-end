@@ -4,9 +4,8 @@ import * as yup from "yup";
 import schema from "./validation/LoginFormSchema.js";
 import styled from "styled-components";
 import { Spring } from "react-spring/renderprops";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Login.css";
-import history from "./history";
 
 // Styled Components Start //
 
@@ -17,6 +16,9 @@ const StyledForm = styled.form`
     // Styled Components End //
 
     function Login() {
+
+    const {push} = useHistory();
+
     const [loginInfo, setLoginInfo] = useState({
         username: "",
         password: "",
@@ -84,7 +86,7 @@ const StyledForm = styled.form`
     .then(res => {
         console.log(res)
         localStorage.setItem('token', res.data.access_token);
-        history.push('/My-plants');
+        push('/My-plants');
     })
     };
 
@@ -101,10 +103,6 @@ const StyledForm = styled.form`
         <header>
             <h1>Cool Plant App</h1>
         </header>
-
-        <Link to="/My-plants">
-            <button type="button">Profile</button>
-        </Link>
 
         {/* Form with Inputs */}
         <Spring

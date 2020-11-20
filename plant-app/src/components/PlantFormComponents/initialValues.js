@@ -6,7 +6,7 @@ export const initialFormValues = {
   datePlanted:'',
   frequency:'daily',
   careInstructions:'',
-  user: '',
+  // user: '',
 }
 
 export const initialDayValues = {

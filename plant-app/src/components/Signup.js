@@ -82,7 +82,7 @@ function Signup() {
       terms: form.terms,
     };
     axios
-      .post("https://water-my-plants-tt39.herokuapp.com/createnewuser", `grant_type=password&email&username=${newUser.username}&password=${newUser.password}&email=${newUser.email}`, {
+      .post("https://water-my-plants-tt39.herokuapp.com/createnewuser", `grant_type=password&username=${newUser.username}&firstName=${newUser.firstName}&lastName=${newUser.lastName}&email=${newUser.email}&phone=${newUser.phone}&password=${newUser.password}$terms=${newUser.terms}`, {
         headers: {
         Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
         'Content-Type': 'application/x-www-form-urlencoded'

@@ -8,9 +8,18 @@
 }
 
 .plant button {
-  background-color: grey;
+  color: #394f49e5;
+  margin: 1%;
 }
 
 .plants-container {
   margin: 1%;
+}
+
+button {
+  color: #394f49e5;
+}
+
+h1 {
+  color: #394f49e5;
 }

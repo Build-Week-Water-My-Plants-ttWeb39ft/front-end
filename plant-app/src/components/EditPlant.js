@@ -36,7 +36,7 @@ export default function EditPlant(props) {
 
   const getPlant = plant => {
     axiosWithAuth()
-      .get(`plants/plant/${id}`, plant)
+      .get(`plants/plant/${id}`)
       .then(res => {
         console.log('Success:',res)
       })

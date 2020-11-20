@@ -68,7 +68,7 @@ export default function PlantManager(props) {
       frequency: formValues.frequency,
       careInstructions: formValues.careInstructions.trim(),
       days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString(),
-      user: `${id}`
+      // user: `${id}`
     }
     mailPlant(plantData);
     if (mailType === 'post'){

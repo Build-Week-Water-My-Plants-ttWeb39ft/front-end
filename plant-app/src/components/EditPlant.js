@@ -51,10 +51,14 @@ export default function EditPlant(props) {
 
   const daysToUse = ()=> {
     const dayObj = {...initialDayValues}
-    props.days.split(',').forEach(day =>{
-      dayObj[day] = true;
-    })
-    return dayObj
+    if (props.days !== "undefined" && props.days !== null) {
+      props.days?.split(',').forEach(day =>{
+        dayObj[day] = true;
+      })
+      return dayObj
+    } else {
+      return initialDayValues;
+    }
   }
 
   const putPlant = plant => {
@@ -65,6 +69,7 @@ export default function EditPlant(props) {
         push("/My-plants")
       })
       .catch(err => {
+        console.log(plant)
         console.log('Error:',err)
       })
   }

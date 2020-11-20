@@ -7,7 +7,7 @@ export default function addPlant() {
 
   const postPlant = newPlant => {
     axiosWithAuth()
-      .post('plants/plants', newPlant)
+      .post('plants/plant', newPlant)
       .then(res => {
         console.log(newPlant)
         console.log('Success:',res)

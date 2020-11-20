@@ -3,6 +3,7 @@ import * as yup from 'yup'
 import schema from '../validation/newPlantSchema'
 import PlantForm from './PlantForm'
 import { initialFormErrors } from './initialValues'
+import { Spring } from "react-spring/renderprops";
 
 
 export default function PlantManager(props) {
@@ -70,16 +71,25 @@ export default function PlantManager(props) {
 
   return(
     <div>
-      <PlantForm 
-        formValues={formValues}
-        dayValues={dayValues} 
-        formErrors={formErrors} 
-        formValueChange={formValueChange} 
-        disabled={disabled} 
-        submit={submit}
-        dayChange={dayChange}
-        dayReset={dayReset}
-        />
+      <Spring
+        from={{ opacity: 0, marginTop: -500 }}
+        to={{ opacity: 1, marginTop: 0 }}
+      >
+        {(props) => (
+          <div style={props}>
+            <PlantForm 
+              formValues={formValues}
+              dayValues={dayValues} 
+              formErrors={formErrors} 
+              formValueChange={formValueChange} 
+              disabled={disabled} 
+              submit={submit}
+              dayChange={dayChange}
+              dayReset={dayReset}
+            />
+          </div>
+        )}
+      </Spring>
     </div>
     
   )

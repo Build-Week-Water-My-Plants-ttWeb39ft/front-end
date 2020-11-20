@@ -12,7 +12,7 @@ export default function DayConditional(props) {
 
   if (formValues.frequency === 'monthly' || formValues.frequency === 'biweekly'|| formValues.frequency === 'weekly'){
     return (
-      <div>
+      <div className='dayConditional'>
       <h5>What days of the week am I watered?</h5>
       <label>
         Monday

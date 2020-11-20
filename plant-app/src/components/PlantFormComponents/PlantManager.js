@@ -6,7 +6,7 @@ import { initialFormErrors } from './initialValues'
 
 
 export default function PlantManager(props) {
-  const { mailPlant, initialDayValues, initialFormValues } = props;
+  const { mailPlant, initialDayValues, initialFormValues, mailType } = props;
 
   const [formValues, setFormValues] = useState(initialFormValues);
   const [dayValues, setDayValues] = useState(initialDayValues);
@@ -52,8 +52,10 @@ export default function PlantManager(props) {
       days: ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].filter(day => dayValues[day]).toString()
     }
     mailPlant(plantData);
-    setDayValues(initialDayValues);
-    setFormValues(initialFormValues);
+    if (mailType === 'post'){
+      setDayValues(initialDayValues);
+      setFormValues(initialFormValues);
+    }
   }
 
 

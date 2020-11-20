@@ -48,6 +48,18 @@ export const ProtectedPage = () => {
     getPlants();
   },[]);
 
+  const logout = () => {
+    axiosWithAuth()
+      .post("/logout")
+      .then(req=>{
+        console.log(req);
+        localStorage.removeItem("token");
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+  };
+
 
   return(
     <div className="plants-container">
@@ -86,6 +98,11 @@ export const ProtectedPage = () => {
 
         ))}
       </div>
+
+      <Link to="/">
+        <button onClick={logout}>Logout</button>
+      </Link>
+      
     </div>
   );
 

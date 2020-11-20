@@ -31,14 +31,6 @@ export default function EditPlant(props) {
     careInstructions: props.careInstructions,
   }
 
-  const daysToUse = ()=> {
-    const dayObj = {...initialDayValues}
-    props.days.split(',').forEach(day =>{
-      dayObj[day] = true;
-    })
-    return dayObj
-  }
-
   const { id } = useParams();
   const { push } = useHistory();
 
@@ -53,6 +45,18 @@ export default function EditPlant(props) {
       })
   }
 
+  useEffect(() => {
+    getPlant();
+  },[]);
+
+  const daysToUse = ()=> {
+    const dayObj = {...initialDayValues}
+    props.days.split(',').forEach(day =>{
+      dayObj[day] = true;
+    })
+    return dayObj
+  }
+
   const putPlant = plant => {
     axiosWithAuth()
       .put(`plants/plant/${id}`, plant)
@@ -64,10 +68,7 @@ export default function EditPlant(props) {
         console.log('Error:',err)
       })
   }
-  
-  useEffect(() => {
-    getPlant();
-  },[]);
+
 
   return (
     <div>

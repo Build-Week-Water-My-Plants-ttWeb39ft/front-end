@@ -10,3 +10,7 @@
 .plant button {
   background-color: grey;
 }
+
+.plants-container {
+  margin: 1%;
+}

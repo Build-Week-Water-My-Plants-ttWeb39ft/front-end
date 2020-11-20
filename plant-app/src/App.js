@@ -16,8 +16,8 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Login" component={Login} />
-          <Route path="/Add-plant" component={AddPlant} />
-          <Route path="/Edit-plant:id" render={props=>(
+          <Route exact path="/Add-plant" component={AddPlant} />
+          <Route path="/Edit-plant/:id" render={props=>(
             <EditPlant {...props} /> )}/>
           <ProtectedRoute exact path="/My-plants" component={ProtectedPage} />
         </Switch>

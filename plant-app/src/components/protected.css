@@ -7,7 +7,7 @@
   color: white;
 }
 
-.plant button {
+.plant button, a {
   color: #394f49e5;
   margin: 1%;
 }
@@ -16,7 +16,7 @@
   margin: 1%;
 }
 
-button {
+button, a {
   color: #394f49e5;
 }
 

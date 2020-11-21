@@ -10,7 +10,9 @@ import "./Login.css";
 // Styled Components Start //
 
 const StyledForm = styled.form`
+
   margin: 15% 20%;
+
 `;
 
 // Styled Components End //
@@ -90,6 +92,10 @@ function Login() {
         console.log(res);
         localStorage.setItem("token", res.data.access_token);
         push("/My-plants");
+      })
+      .catch((err) => {
+        console.log(err);
+
       });
   };
 

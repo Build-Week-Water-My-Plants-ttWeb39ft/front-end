@@ -13,13 +13,13 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route path="/" exact component={Home} />
           <Route exact path="/Signup" component={Signup} />
           <Route exact path="/Login" component={Login} />
           <Route exact path="/Add-plant" component={AddPlant} />
           <Route path="/Edit-plant/:id" render={props=>(
             <EditPlant {...props} /> )}/>
           <ProtectedRoute exact path="/My-plants" component={ProtectedPage} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </div>
     </Router>

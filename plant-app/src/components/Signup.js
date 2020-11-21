@@ -14,7 +14,7 @@ function Signup() {
     username: "",
     firstName: "",
     lastName: "",
-    email: "",
+    primaryemail: "",
     phone: "",
     password: "",
     terms: false,
@@ -25,7 +25,7 @@ function Signup() {
     username: "",
     firstName: "",
     lastName: "",
-    email: "",
+    primaryemail: "",
     phone: "",
     password: "",
     terms: false,
@@ -47,7 +47,7 @@ function Signup() {
       .min(6, "Username needs to be at least 6 characters"),
     firstName: yup.string().required("First Name is required"),
     lastName: yup.string().required("Last Name is required"),
-    email: yup.string().required("Email is required"),
+    primaryemail: yup.string().required("Email is required"),
     phone: yup
       .string()
       .required("Phone Number is required")
@@ -76,36 +76,31 @@ function Signup() {
       username: form.username.trim(),
       firstName: form.firstName.trim(),
       lastName: form.lastName.trim(),
-      email: form.email.trim(),
+      primaryemail: form.primaryemail.trim(),
       phone: form.phone.trim(),
       password: form.password.trim(),
-      terms: form.terms,
     };
     axios
-      .post("https://water-my-plants-tt39.herokuapp.com/createnewuser", `grant_type=password&username=${newUser.username}&firstName=${newUser.firstName}&lastName=${newUser.lastName}&email=${newUser.email}&phone=${newUser.phone}&password=${newUser.password}$terms=${newUser.terms}`, {
-        headers: {
-        Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
-        'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      })
+      .post("https://water-my-plants-tt39.herokuapp.com/createnewuser", newUser)
       .then((res) => {
         localStorage.setItem("token", res.data.access_token)
         localStorage.setItem("user:id", res.data.userid)
         push("/Login");
-        setForm({
-          //Doesn't clear form but it needs to
-          username: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          password: "",
-          terms: false,
-        });
+        // setForm({
+        //   //Doesn't clear form but it needs to
+        //   username: "",
+        //   firstName: "",
+        //   lastName: "",
+        //   primaryemail: "",
+        //   phone: "",
+        //   password: "",
+        //   terms: false,
+        // });
       })
       .catch((err) => {
         debugger;
         console.log(err)
+        console.log(newUser)
       });
   };
 
@@ -169,15 +164,15 @@ function Signup() {
                 <label>
                   Your Email{" "}
                   <input
-                    value={form.email}
+                    value={form.primaryemail}
                     className="form-control"
                     onChange={change}
-                    name="email"
+                    name="primaryemail"
                     type="email"
                     placeholder="Your Email"
                   />
                 </label>
-                <div style={{ color: "red" }}>{errors.email}</div>
+                <div style={{ color: "red" }}>{errors.primaryemail}</div>
                 <br></br>
                 <label>
                   Your Phone Number{" "}

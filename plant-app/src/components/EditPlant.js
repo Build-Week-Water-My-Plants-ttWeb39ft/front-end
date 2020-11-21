@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { initialDayValues } from './PlantFormComponents/initialValues';
 import PlantManager from './PlantFormComponents/PlantManager';
 import { useParams, useHistory } from 'react-router-dom';
-import PlantForm from './PlantFormComponents/PlantForm';
 import { axiosWithAuth } from './axiosWithAuth';
 
 

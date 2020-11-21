@@ -2,18 +2,18 @@ import React from 'react';
 import PlantManager from './PlantFormComponents/PlantManager';
 import { initialFormValues, initialDayValues } from './PlantFormComponents/initialValues'
 import { axiosWithAuth } from './axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 
-export default function addPlant() {
+export default function AddPlant() {
+  const { push } = useHistory();
 
   const postPlant = newPlant => {
     axiosWithAuth()
       .post('plants/plant', newPlant)
       .then(res => {
-        console.log(newPlant)
-        console.log('Success:',res)
+        push("/My-plants")
       })
       .catch(err => {
-        console.log(newPlant)
         console.log('Error:',err)
       })
   }

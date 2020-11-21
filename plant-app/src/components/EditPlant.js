@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from './axiosWithAuth';
 
 
-// /**** Tested functionality by removing 'props' from EditPlant(props), and uncommenting below  ****/
+/**** Tested functionality by removing 'props' from EditPlant(props), and uncommenting below  ****/
 // const props = {
 //   "nickname": "test plant",
 //   "species": "Unknown",
